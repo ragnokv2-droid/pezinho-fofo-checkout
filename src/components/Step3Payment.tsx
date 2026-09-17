@@ -187,56 +187,88 @@ export default function Step3Payment({
   }
 
   // NOVO: pagamento com cartão via InfinitePay
-  async function payWithCard() {
-    setCardLoading(true);
-    setError(null);
+ async function payWithCard() {
+  setCardLoading(true);
+  setError(null);
+
+  try {
+    const res = await fetch("/api/infinitepay/link", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        customer: {
+          name: formData.name,
+          email: formData.email,
+          cellphone: formData.cellphone,
+          taxId: formData.taxId,
+        },
+        address: {
+          zipCode: formData.zipCode,
+          street: formData.street,
+          number: formData.number,
+          complement: formData.complement,
+          neighborhood: formData.neighborhood,
+          city: formData.city,
+          state: formData.state,
+        },
+        shipping: formData.shipping,
+        size: formData.size || "",
+        amount: cardTotalAmount,
+        tracking: {
+          source: formData.source,
+          fbclid: formData.fbclid || "",
+          utm_source: formData.utm_source || "",
+          utm_medium: formData.utm_medium || "",
+          utm_campaign: formData.utm_campaign || "",
+          utm_content: formData.utm_content || "",
+          utm_term: formData.utm_term || "",
+        },
+      }),
+    });
+
+    const rawResponse = await res.text();
+
+    let json: {
+      success?: boolean;
+      url?: string;
+      error?: string;
+    } = {};
 
     try {
-      const res = await fetch("/api/infinitepay/link", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          customer: {
-            name: formData.name,
-            email: formData.email,
-            cellphone: formData.cellphone,
-            taxId: formData.taxId,
-          },
-          address: {
-            zipCode: formData.zipCode,
-            street: formData.street,
-            number: formData.number,
-            complement: formData.complement,
-            neighborhood: formData.neighborhood,
-            city: formData.city,
-            state: formData.state,
-          },
-          shipping: formData.shipping,
-          size: formData.size || "",
-          amount: cardTotalAmount,
-          tracking: {
-            source: formData.source,
-            fbclid: formData.fbclid || "",
-            utm_source: formData.utm_source || "",
-            utm_medium: formData.utm_medium || "",
-            utm_campaign: formData.utm_campaign || "",
-            utm_content: formData.utm_content || "",
-            utm_term: formData.utm_term || "",
-          },
-        }),
-      });
+      json = rawResponse ? JSON.parse(rawResponse) : {};
+    } catch {
+      console.error(
+        "[cartao] Resposta não-JSON:",
+        res.status,
+        rawResponse
+      );
 
-      const json = await res.json();
-
-      if (!res.ok || !json.url) {
-        throw new Error(json.error || "Erro ao gerar link de cartão");
-      }
-
-      window.location.href = json.url;
-    } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Erro inesperado");
-      setCardLoading(false);
+      throw new Error(
+        `A API de cartão retornou uma resposta inválida (HTTP ${res.status})`
+      );
     }
+
+    if (!res.ok || !json.url) {
+      throw new Error(
+        json.error || `Erro ao gerar link de cartão (HTTP ${res.status})`
+      );
+    }
+
+    window.location.href = json.url;
+  } catch (err: unknown) {
+    console.error("[cartao]", err);
+
+    setError(
+      err instanceof Error
+        ? err.message
+        : "Erro inesperado ao gerar pagamento com cartão"
+    );
+
+    setCardLoading(false);
+  }
+}
   }
 
   function copyCode() {
