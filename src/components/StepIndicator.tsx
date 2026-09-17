@@ -16,7 +16,7 @@ export default function StepIndicator({ current }: { current: Step }) {
 
         {/* linha ativa */}
         <div
-          className="absolute top-4 left-[16%] h-[2px] bg-teal-600 z-0 transition-all duration-300"
+          className="absolute top-4 left-[16%] h-[2px] bg-[#FF1971] z-0 transition-all duration-300"
           style={{
             width:
               current === 1 ? "0%" : current === 2 ? "34%" : "68%",
@@ -36,7 +36,7 @@ export default function StepIndicator({ current }: { current: Step }) {
                 className={clsx(
                   "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-colors",
                   (isCompleted || isActive) &&
-                    "bg-teal-600 border-teal-600 text-white",
+                    "bg-[#FF1971] border-[#FF1971] text-white",
                   !isCompleted &&
                     !isActive &&
                     "bg-white border-gray-300 text-gray-400"
@@ -44,11 +44,12 @@ export default function StepIndicator({ current }: { current: Step }) {
               >
                 {step.id}
               </div>
+
               <span
                 className={clsx(
                   "text-[11px] mt-2 text-center leading-tight px-1",
                   isActive
-                    ? "text-teal-700 font-semibold"
+                    ? "text-[#FF1971] font-semibold"
                     : "text-gray-400"
                 )}
               >
