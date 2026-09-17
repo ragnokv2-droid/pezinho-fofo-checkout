@@ -38,15 +38,19 @@ export default function Step3Payment({
   const [secondsLeft, setSecondsLeft] = useState(PIX_TIMEOUT_SECONDS);
   const [purchaseOnPixGenerate, setPurchaseOnPixGenerate] = useState(false);
 
-  // NOVO: configurações do cartão
   const [cardEnabled, setCardEnabled] = useState(false);
   const [payMethod, setPayMethod] = useState<"pix" | "card">("pix");
   const [cardLoading, setCardLoading] = useState(false);
 
   // O totalAmount já contém o frete selecionado no checkout.
-  // Portanto, extraímos o frete a partir do total Pix e somamos ao preço-base do cartão.
-  const shippingAmountCents = Math.max(0, totalAmount - PIX_BASE_PRICE_CENTS);
-  const cardTotalAmount = CARD_BASE_PRICE_CENTS + shippingAmountCents;
+  // Extraímos o frete do total PIX e somamos ao preço-base do cartão.
+  const shippingAmountCents = Math.max(
+    0,
+    totalAmount - PIX_BASE_PRICE_CENTS
+  );
+
+  const cardTotalAmount =
+    CARD_BASE_PRICE_CENTS + shippingAmountCents;
 
   useEffect(() => {
     fetch("/api/config", { cache: "no-store" })
@@ -56,7 +60,6 @@ export default function Step3Payment({
           setPurchaseOnPixGenerate(true);
         }
 
-        // NOVO: verifica se cartão está habilitado
         if (json?.config?.cardEnabled === true) {
           setCardEnabled(true);
         }
@@ -84,7 +87,6 @@ export default function Step3Payment({
   }, [pix]);
 
   // Informa ao page.tsx quando o PIX foi gerado.
-  // Isso faz o StepIndicator e o ProductSummary desaparecerem.
   useEffect(() => {
     onPixReady?.(!!pix);
   }, [pix, onPixReady]);
@@ -96,7 +98,9 @@ export default function Step3Payment({
     try {
       const res = await fetch("/api/pix", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           amount: totalAmount,
           customer: {
@@ -119,13 +123,13 @@ export default function Step3Payment({
         throw new Error(json.error || "Erro ao gerar PIX");
       }
 
-      // Ao definir o PIX, o useEffect acima avisa o page.tsx
-      // para esconder as etapas e o resumo.
       setPix(json.data);
 
       fetch("/api/leads", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           nome: formData.name,
           produto: PRODUCT.name,
@@ -178,7 +182,9 @@ export default function Step3Payment({
       }
     } catch (err: unknown) {
       const message =
-        err instanceof Error ? err.message : "Erro inesperado";
+        err instanceof Error
+          ? err.message
+          : "Erro inesperado";
 
       setError(message);
     } finally {
@@ -186,89 +192,91 @@ export default function Step3Payment({
     }
   }
 
-  // NOVO: pagamento com cartão via InfinitePay
- async function payWithCard() {
-  setCardLoading(true);
-  setError(null);
-
-  try {
-    const res = await fetch("/api/infinitepay/link", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        customer: {
-          name: formData.name,
-          email: formData.email,
-          cellphone: formData.cellphone,
-          taxId: formData.taxId,
-        },
-        address: {
-          zipCode: formData.zipCode,
-          street: formData.street,
-          number: formData.number,
-          complement: formData.complement,
-          neighborhood: formData.neighborhood,
-          city: formData.city,
-          state: formData.state,
-        },
-        shipping: formData.shipping,
-        size: formData.size || "",
-        amount: cardTotalAmount,
-        tracking: {
-          source: formData.source,
-          fbclid: formData.fbclid || "",
-          utm_source: formData.utm_source || "",
-          utm_medium: formData.utm_medium || "",
-          utm_campaign: formData.utm_campaign || "",
-          utm_content: formData.utm_content || "",
-          utm_term: formData.utm_term || "",
-        },
-      }),
-    });
-
-    const rawResponse = await res.text();
-
-    let json: {
-      success?: boolean;
-      url?: string;
-      error?: string;
-    } = {};
+  // Pagamento com cartão via InfinitePay
+  async function payWithCard() {
+    setCardLoading(true);
+    setError(null);
 
     try {
-      json = rawResponse ? JSON.parse(rawResponse) : {};
-    } catch {
-      console.error(
-        "[cartao] Resposta não-JSON:",
-        res.status,
-        rawResponse
-      );
+      const res = await fetch("/api/infinitepay/link", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          customer: {
+            name: formData.name,
+            email: formData.email,
+            cellphone: formData.cellphone,
+            taxId: formData.taxId,
+          },
+          address: {
+            zipCode: formData.zipCode,
+            street: formData.street,
+            number: formData.number,
+            complement: formData.complement,
+            neighborhood: formData.neighborhood,
+            city: formData.city,
+            state: formData.state,
+          },
+          shipping: formData.shipping,
+          size: formData.size || "",
+          amount: cardTotalAmount,
+          tracking: {
+            source: formData.source,
+            fbclid: formData.fbclid || "",
+            utm_source: formData.utm_source || "",
+            utm_medium: formData.utm_medium || "",
+            utm_campaign: formData.utm_campaign || "",
+            utm_content: formData.utm_content || "",
+            utm_term: formData.utm_term || "",
+          },
+        }),
+      });
 
-      throw new Error(
-        `A API de cartão retornou uma resposta inválida (HTTP ${res.status})`
+      const rawResponse = await res.text();
+
+      let json: {
+        success?: boolean;
+        url?: string;
+        error?: string;
+      } = {};
+
+      try {
+        json = rawResponse
+          ? JSON.parse(rawResponse)
+          : {};
+      } catch {
+        console.error(
+          "[cartao] Resposta não-JSON:",
+          res.status,
+          rawResponse
+        );
+
+        throw new Error(
+          `A API de cartão retornou uma resposta inválida (HTTP ${res.status})`
+        );
+      }
+
+      if (!res.ok || !json.url) {
+        throw new Error(
+          json.error ||
+            `Erro ao gerar link de cartão (HTTP ${res.status})`
+        );
+      }
+
+      window.location.href = json.url;
+    } catch (err: unknown) {
+      console.error("[cartao]", err);
+
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Erro inesperado ao gerar pagamento com cartão"
       );
+    } finally {
+      setCardLoading(false);
     }
-
-    if (!res.ok || !json.url) {
-      throw new Error(
-        json.error || `Erro ao gerar link de cartão (HTTP ${res.status})`
-      );
-    }
-
-    window.location.href = json.url;
-  } catch (err: unknown) {
-    console.error("[cartao]", err);
-
-    setError(
-      err instanceof Error
-        ? err.message
-        : "Erro inesperado ao gerar pagamento com cartão"
-    );
-
-    setCardLoading(false);
-  }
-}
   }
 
   function copyCode() {
@@ -286,8 +294,7 @@ export default function Step3Payment({
     onBack();
   }
 
-  // Tela "Quase lá..." depois que o PIX foi gerado.
-  // O page.tsx já esconde StepIndicator e ProductSummary.
+  // Tela depois que o PIX foi gerado.
   if (pix) {
     const expired = secondsLeft <= 0;
 
@@ -313,7 +320,9 @@ export default function Step3Payment({
           </p>
 
           <div className="mt-4 inline-flex items-center gap-2 bg-amber-50 text-amber-800 text-sm font-medium px-4 py-2 rounded-full">
-            {expired ? "Tempo esgotado" : "Aguardando pagamento"}
+            {expired
+              ? "Tempo esgotado"
+              : "Aguardando pagamento"}
 
             {!expired && (
               <span className="flex gap-0.5">
@@ -354,8 +363,8 @@ export default function Step3Payment({
           </button>
 
           <p className="text-xs text-gray-500 mt-4 leading-relaxed">
-            Após copiar o código, abra seu aplicativo de pagamento onde você
-            utiliza o Pix.
+            Após copiar o código, abra seu aplicativo de
+            pagamento onde você utiliza o Pix.
             <br />
             Escolha a opção{" "}
             <strong className="text-teal-700">
@@ -403,11 +412,11 @@ export default function Step3Payment({
         </h2>
 
         <p className="text-sm text-gray-500 mt-2">
-          Para finalizar seu pedido, escolha a forma de pagamento
+          Para finalizar seu pedido, escolha a forma de
+          pagamento
         </p>
       </div>
 
-      {/* NOVO: Seletor de método de pagamento */}
       {cardEnabled && (
         <div className="space-y-2 mb-4">
           <button
@@ -432,8 +441,12 @@ export default function Step3Payment({
             </span>
 
             <div className="flex-1">
-              <p className="text-sm font-semibold text-gray-900">Pix</p>
-              <p className="text-xs text-gray-500">5% de desconto</p>
+              <p className="text-sm font-semibold text-gray-900">
+                Pix
+              </p>
+              <p className="text-xs text-gray-500">
+                5% de desconto
+              </p>
             </div>
 
             <span className="text-sm font-semibold">
@@ -466,9 +479,6 @@ export default function Step3Payment({
               <p className="text-sm font-semibold text-gray-900">
                 Cartão de crédito
               </p>
-              <p className="text-xs text-gray-500">
-            
-              </p>
             </div>
 
             <span className="text-sm font-semibold">
@@ -479,8 +489,6 @@ export default function Step3Payment({
       )}
 
       <div className="border border-gray-200 rounded-xl p-4">
-        {/* Mantido o card original quando o cartão não está habilitado.
-            Quando habilitado, o seletor acima passa a mostrar os métodos. */}
         {!cardEnabled && (
           <div className="flex items-center justify-between gap-2 mb-3">
             <div className="flex items-center gap-2">
@@ -501,8 +509,9 @@ export default function Step3Payment({
 
         {!cardEnabled && (
           <p className="text-sm text-gray-500 leading-relaxed mb-3">
-            A confirmação de pagamento é realizada em poucos minutos. Utilize o
-            aplicativo do seu banco para pagar.
+            A confirmação de pagamento é realizada em poucos
+            minutos. Utilize o aplicativo do seu banco para
+            pagar.
           </p>
         )}
 
@@ -515,7 +524,6 @@ export default function Step3Payment({
           </p>
         )}
 
-        {/* NOVO: botão de ação conforme método selecionado */}
         {payMethod === "pix" || !cardEnabled ? (
           <button
             type="button"
@@ -539,7 +547,9 @@ export default function Step3Payment({
             disabled={cardLoading}
             className="w-full bg-teal-700 hover:bg-teal-800 disabled:bg-gray-300 text-white font-bold py-3.5 rounded-lg text-sm"
           >
-            {cardLoading ? "Redirecionando..." : "PAGAR COM CARTÃO"}
+            {cardLoading
+              ? "Redirecionando..."
+              : "PAGAR COM CARTÃO"}
           </button>
         )}
       </div>
