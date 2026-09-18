@@ -193,6 +193,7 @@ export default function Step3Payment({
   }
 
   // Pagamento com cartão via InfinitePay
+  // Mantido no código, mas não aparece enquanto cardEnabled estiver false.
   async function payWithCard() {
     setCardLoading(true);
     setError(null);
@@ -243,9 +244,7 @@ export default function Step3Payment({
       } = {};
 
       try {
-        json = rawResponse
-          ? JSON.parse(rawResponse)
-          : {};
+        json = rawResponse ? JSON.parse(rawResponse) : {};
       } catch {
         console.error(
           "[cartao] Resposta não-JSON:",
@@ -311,7 +310,7 @@ export default function Step3Payment({
             ) : (
               <>
                 Pague seu Pix dentro{" "}
-                <strong className="text-gray-800">
+                <strong className="text-[#0864C7]">
                   {formatTimer(secondsLeft)}
                 </strong>{" "}
                 para garantir sua compra.
@@ -319,16 +318,16 @@ export default function Step3Payment({
             )}
           </p>
 
-          <div className="mt-4 inline-flex items-center gap-2 bg-amber-50 text-amber-800 text-sm font-medium px-4 py-2 rounded-full">
+          <div className="mt-4 inline-flex items-center gap-2 bg-[#FF1971]/10 text-[#FF1971] text-sm font-medium px-4 py-2 rounded-full">
             {expired
               ? "Tempo esgotado"
               : "Aguardando pagamento"}
 
             {!expired && (
               <span className="flex gap-0.5">
-                <span className="w-1 h-1 rounded-full bg-amber-500 animate-pulse" />
-                <span className="w-1 h-1 rounded-full bg-amber-500 animate-pulse [animation-delay:150ms]" />
-                <span className="w-1 h-1 rounded-full bg-amber-500 animate-pulse [animation-delay:300ms]" />
+                <span className="w-1 h-1 rounded-full bg-[#FF1971] animate-pulse" />
+                <span className="w-1 h-1 rounded-full bg-[#FF1971] animate-pulse [animation-delay:150ms]" />
+                <span className="w-1 h-1 rounded-full bg-[#FF1971] animate-pulse [animation-delay:300ms]" />
               </span>
             )}
           </div>
@@ -347,7 +346,7 @@ export default function Step3Payment({
             type="button"
             onClick={copyCode}
             disabled={expired}
-            className="w-full flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 disabled:bg-gray-300 text-white font-semibold py-3.5 rounded-lg text-sm transition-colors"
+            className="w-full flex items-center justify-center gap-2 bg-[#0864C7] hover:bg-[#0755A8] disabled:bg-gray-300 text-white font-semibold py-3.5 rounded-lg text-sm transition-colors"
           >
             {copied ? (
               <>
@@ -366,8 +365,9 @@ export default function Step3Payment({
             Após copiar o código, abra seu aplicativo de
             pagamento onde você utiliza o Pix.
             <br />
+
             Escolha a opção{" "}
-            <strong className="text-teal-700">
+            <strong className="text-[#0864C7]">
               Pix Copia e Cola
             </strong>{" "}
             e insira o código copiado.
@@ -404,7 +404,7 @@ export default function Step3Payment({
     <div className="px-4 py-6 bg-white">
       <div className="mb-5">
         <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-          <span className="w-7 h-7 rounded-full bg-teal-600 text-white text-sm flex items-center justify-center font-bold">
+          <span className="w-7 h-7 rounded-full bg-[#0864C7] text-white text-sm flex items-center justify-center font-bold">
             3
           </span>
 
@@ -424,19 +424,19 @@ export default function Step3Payment({
             onClick={() => setPayMethod("pix")}
             className={`w-full flex items-center gap-3 p-3.5 rounded-xl border-2 text-left ${
               payMethod === "pix"
-                ? "border-teal-600 bg-teal-50"
+                ? "border-[#0864C7] bg-[#0864C7]/5"
                 : "border-gray-200 bg-white"
             }`}
           >
             <span
               className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
                 payMethod === "pix"
-                  ? "border-teal-600"
+                  ? "border-[#0864C7]"
                   : "border-gray-300"
               }`}
             >
               {payMethod === "pix" && (
-                <span className="w-2.5 h-2.5 rounded-full bg-teal-600" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#0864C7]" />
               )}
             </span>
 
@@ -444,7 +444,8 @@ export default function Step3Payment({
               <p className="text-sm font-semibold text-gray-900">
                 Pix
               </p>
-              <p className="text-xs text-gray-500">
+
+              <p className="text-xs text-[#FF1971] font-medium">
                 5% de desconto
               </p>
             </div>
@@ -459,19 +460,19 @@ export default function Step3Payment({
             onClick={() => setPayMethod("card")}
             className={`w-full flex items-center gap-3 p-3.5 rounded-xl border-2 text-left ${
               payMethod === "card"
-                ? "border-teal-600 bg-teal-50"
+                ? "border-[#0864C7] bg-[#0864C7]/5"
                 : "border-gray-200 bg-white"
             }`}
           >
             <span
               className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
                 payMethod === "card"
-                  ? "border-teal-600"
+                  ? "border-[#0864C7]"
                   : "border-gray-300"
               }`}
             >
               {payMethod === "card" && (
-                <span className="w-2.5 h-2.5 rounded-full bg-teal-600" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#0864C7]" />
               )}
             </span>
 
@@ -492,8 +493,8 @@ export default function Step3Payment({
         {!cardEnabled && (
           <div className="flex items-center justify-between gap-2 mb-3">
             <div className="flex items-center gap-2">
-              <span className="w-5 h-5 rounded-full border-2 border-teal-600 flex items-center justify-center">
-                <span className="w-2.5 h-2.5 rounded-full bg-teal-600" />
+              <span className="w-5 h-5 rounded-full border-2 border-[#0864C7] flex items-center justify-center">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#0864C7]" />
               </span>
 
               <span className="font-semibold text-gray-900">
@@ -501,7 +502,7 @@ export default function Step3Payment({
               </span>
             </div>
 
-            <span className="text-[10px] font-bold bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full">
+            <span className="text-[10px] font-bold bg-[#FF1971]/10 text-[#FF1971] px-2 py-0.5 rounded-full">
               5% de desconto
             </span>
           </div>
@@ -529,7 +530,7 @@ export default function Step3Payment({
             type="button"
             onClick={generatePix}
             disabled={loading}
-            className="w-full bg-teal-700 hover:bg-teal-800 disabled:bg-gray-300 disabled:text-gray-500 text-white font-bold py-3.5 rounded-lg text-sm tracking-wide transition-colors flex items-center justify-center gap-2"
+            className="w-full bg-[#0864C7] hover:bg-[#0755A8] disabled:bg-gray-300 disabled:text-gray-500 text-white font-bold py-3.5 rounded-lg text-sm tracking-wide transition-colors flex items-center justify-center gap-2"
           >
             {loading ? (
               <>
@@ -545,7 +546,7 @@ export default function Step3Payment({
             type="button"
             onClick={payWithCard}
             disabled={cardLoading}
-            className="w-full bg-teal-700 hover:bg-teal-800 disabled:bg-gray-300 text-white font-bold py-3.5 rounded-lg text-sm"
+            className="w-full bg-[#0864C7] hover:bg-[#0755A8] disabled:bg-gray-300 text-white font-bold py-3.5 rounded-lg text-sm"
           >
             {cardLoading
               ? "Redirecionando..."
