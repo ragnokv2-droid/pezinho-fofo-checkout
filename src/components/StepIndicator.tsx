@@ -9,7 +9,7 @@ const steps = [
 
 export default function StepIndicator({ current }: { current: Step }) {
   return (
-    <div className="px-4 py-5 bg-white border-b border-gray-100">
+    <div className="px-4 py-5 bg-transparent border-b border-gray-100">
       <div className="flex items-start justify-between relative max-w-md mx-auto">
         {/* linha de fundo */}
         <div className="absolute top-4 left-[16%] right-[16%] h-[2px] bg-gray-200 z-0" />

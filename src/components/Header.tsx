@@ -3,7 +3,7 @@ import { Lock } from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="bg-white border-b border-gray-100 px-4 h-[80px] flex items-center justify-between sticky top-0 z-20 overflow-hidden">
+    <header className="bg-white/95 backdrop-blur-sm border-b border-white/40 px-4 h-[80px] flex items-center justify-between sticky top-0 z-20 overflow-hidden">
       <div className="w-[150px] h-[80px] flex items-center justify-center overflow-hidden">
         <Image
           src="/logo.png"

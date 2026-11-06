@@ -6,22 +6,20 @@ import { PRODUCT, formatBRL } from "@/lib/product";
 
 interface Props {
   size?: string;
-  showOriginal?: boolean;
   shippingPrice?: number;
   totalAmount?: number;
 }
 
 export default function ProductSummary({
   size = "",
-  showOriginal = true,
   shippingPrice = 0,
   totalAmount,
 }: Props) {
   const [open, setOpen] = useState(false);
-  const total = totalAmount ?? PRODUCT.pixPrice + shippingPrice;
+  const total = totalAmount ?? PRODUCT.price + shippingPrice;
 
   return (
-    <div className="bg-white border-b border-gray-100">
+    <div className="bg-white/95 border-b border-gray-100">
       <button
         type="button"
         onClick={() => setOpen(!open)}
@@ -61,23 +59,16 @@ export default function ProductSummary({
               <p className="text-sm font-semibold text-gray-900 leading-tight">
                 {PRODUCT.name}
               </p>
-              {size && <p className="text-xs font-semibold text-blue-900 mt-1">Tamanho: {size}</p>}
+              {size && (
+                <p className="text-xs font-semibold text-blue-900 mt-1">
+                  Tamanho: {size}
+                </p>
+              )}
               <div className="mt-1 flex items-baseline gap-2 flex-wrap">
-                {showOriginal && (
-                  <span className="text-xs text-gray-400 line-through">
-                    {formatBRL(PRODUCT.originalPrice)}
-                  </span>
-                )}
                 <span className="text-sm font-bold text-gray-900">
-                  {formatBRL(PRODUCT.cardPrice)}
-                </span>
-                <span className="text-xs font-bold text-teal-700">
-                  {formatBRL(PRODUCT.pixPrice)} no PIX
+                  {formatBRL(PRODUCT.price)}
                 </span>
               </div>
-              <span className="inline-block mt-1 text-[10px] font-semibold bg-yellow-400 text-yellow-900 px-1.5 py-0.5 rounded">
-                5% OFF no PIX
-              </span>
             </div>
           </div>
 
