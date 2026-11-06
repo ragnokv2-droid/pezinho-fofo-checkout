@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    const amountCents = Number(body.amount) || PRODUCT.price;
+    const amountCents = Number(body.amount) || PRODUCT.pixPrice;
 
     const brCode = generatePixBrCode({
       key: "11638721998",
