@@ -2,10 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 export type CheckoutConfig = {
   purchaseOnPixGenerate: boolean;
+  cardEnabled: boolean;
 };
 
 const DEFAULT_CONFIG: CheckoutConfig = {
   purchaseOnPixGenerate: false,
+  cardEnabled: false,
 };
 
 function getWebhook() {
@@ -63,6 +65,8 @@ async function readConfig(): Promise<CheckoutConfig> {
       purchaseOnPixGenerate:
         json.config.purchaseOnPixGenerate === true,
 
+      cardEnabled:
+        json.config.cardEnabled === true,
     };
 
   } catch (error) {
@@ -105,6 +109,8 @@ async function writeConfig(
       purchaseOnPixGenerate:
         config.purchaseOnPixGenerate,
 
+      cardEnabled:
+        config.cardEnabled,
     }),
 
     cache: "no-store",
@@ -128,6 +134,8 @@ async function writeConfig(
     purchaseOnPixGenerate:
       json.config?.purchaseOnPixGenerate === true,
 
+    cardEnabled:
+      json.config?.cardEnabled === true,
   };
 }
 
@@ -191,6 +199,11 @@ export async function POST(
           ? body.purchaseOnPixGenerate
           : current.purchaseOnPixGenerate,
 
+      cardEnabled:
+        typeof body.cardEnabled ===
+        "boolean"
+          ? body.cardEnabled
+          : current.cardEnabled,
     };
 
     const saved =
