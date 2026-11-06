@@ -3,22 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --background: #e8f4fc;
+  --background: #fffaf1;
   --foreground: #171717;
+}
+
+html,
+body {
+  min-height: 100%;
 }
 
 body {
   color: var(--foreground);
-  background: #d6eef9;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
+  background: var(--background);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 input,
 select,
 button {
-  font-size: 16px;
+  font-size: 16px; /* evita zoom no iOS */
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -27,127 +31,108 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-/* ========== Tema de Natal - Fundo ========== */
-.christmas-bg {
-  background: linear-gradient(
-    180deg,
-    #eaf6fd 0%,
-    #d4eef9 25%,
-    #c5e7f5 50%,
-    #b8dff0 75%,
-    #a8d5e8 100%
-  );
-  position: relative;
+.christmas-body {
+  background: #fffaf1;
+}
+
+.christmas-shell {
+  background: #fffaf1;
+  isolation: isolate;
+}
+
+.christmas-content {
+  min-height: 100vh;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 0 22px rgba(115, 76, 32, 0.08);
+}
+
+.christmas-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   overflow: hidden;
+  pointer-events: none;
 }
 
-/* Neve no chão */
-.christmas-bg::after {
-  content: "";
+.christmas-garland-left {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
+  width: clamp(48px, 13vw, 76px);
+  height: 205px;
+  object-fit: fill;
+}
+
+.christmas-santa {
+  position: absolute;
+  top: 0;
   right: 0;
-  height: 90px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.4) 30%,
-    rgba(255, 255, 255, 0.85) 70%,
-    #ffffff 100%
-  );
-  pointer-events: none;
-  z-index: 2;
+  width: clamp(76px, 17vw, 104px);
+  height: 137px;
+  object-fit: contain;
+  object-position: top right;
 }
 
-/* Flocos de neve caindo */
-.snowflake {
+.christmas-tree-left {
   position: absolute;
-  top: -10%;
-  color: #ffffff;
-  font-size: 1rem;
-  opacity: 0.85;
-  animation: fall linear infinite;
-  text-shadow: 0 0 6px rgba(255, 255, 255, 0.9);
-  pointer-events: none;
+  left: 0;
+  top: 42%;
+  width: clamp(48px, 13vw, 76px);
+  height: 219px;
+  object-fit: fill;
+}
+
+.christmas-tree-right {
+  position: absolute;
+  right: 0;
+  top: 48%;
+  width: clamp(48px, 13vw, 76px);
+  height: 249px;
+  object-fit: fill;
+}
+
+.christmas-header {
+  background: rgba(255, 255, 255, 0.98);
+  border-bottom: 1px solid #f3eadc;
+  padding-right: 76px;
+  overflow: visible;
+}
+
+.christmas-header-santa {
+  position: absolute;
+  top: -2px;
+  right: -2px;
   z-index: 5;
-  user-select: none;
-}
-
-.snow-1 { left: 5%;  animation-duration: 11s; animation-delay: 0s;   font-size: 1.2rem; }
-.snow-2 { left: 15%; animation-duration: 14s; animation-delay: 1.5s; font-size: 0.9rem; }
-.snow-3 { left: 28%; animation-duration: 10s; animation-delay: 3s;   font-size: 1.4rem; }
-.snow-4 { left: 42%; animation-duration: 13s; animation-delay: 0.8s; font-size: 1rem; }
-.snow-5 { left: 55%; animation-duration: 12s; animation-delay: 2.2s; font-size: 1.1rem; }
-.snow-6 { left: 68%; animation-duration: 15s; animation-delay: 4s;   font-size: 0.85rem; }
-.snow-7 { left: 78%; animation-duration: 11s; animation-delay: 1s;   font-size: 1.3rem; }
-.snow-8 { left: 90%; animation-duration: 13s; animation-delay: 2.8s; font-size: 1rem; }
-.snow-9 { left: 10%; animation-duration: 16s; animation-delay: 5s;   font-size: 0.95rem; }
-.snow-10{ left: 85%; animation-duration: 9s;  animation-delay: 3.5s; font-size: 1.15rem; }
-
-@keyframes fall {
-  0% {
-    transform: translateY(-10vh) rotate(0deg);
-    opacity: 0.9;
-  }
-  80% {
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateY(110vh) rotate(360deg);
-    opacity: 0.15;
-  }
-}
-
-/* Árvores e presentes */
-.tree-left,
-.tree-right {
-  position: absolute;
-  bottom: 20px;
-  z-index: 3;
+  width: clamp(76px, 17vw, 104px);
+  height: 137px;
+  object-fit: contain;
+  object-position: top right;
   pointer-events: none;
-  user-select: none;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
-.tree-left {
-  left: -18px;
-  font-size: 7.5rem;
-  line-height: 1;
-  transform: scaleX(-1);
+.christmas-banner {
+  background: #c91f32;
+  box-shadow: 0 2px 5px rgba(120, 25, 30, 0.12);
+  font-size: 13px;
 }
 
-.tree-right {
-  right: -18px;
-  font-size: 7.5rem;
-  line-height: 1;
+.christmas-script {
+  color: #ffd45a;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 1.15em;
 }
 
-.gifts-left {
-  position: absolute;
-  bottom: 8px;
-  left: 55px;
-  z-index: 4;
-  pointer-events: none;
-  user-select: none;
-  display: flex;
-  gap: 2px;
-  align-items: flex-end;
-}
+@media (max-width: 380px) {
+  .christmas-header {
+    padding-right: 66px;
+  }
 
-.gifts-right {
-  position: absolute;
-  bottom: 8px;
-  right: 55px;
-  z-index: 4;
-  pointer-events: none;
-  user-select: none;
-  display: flex;
-  gap: 2px;
-  align-items: flex-end;
-}
+  .christmas-header > div:first-child {
+    width: 126px;
+  }
 
-.gift {
-  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
-  line-height: 1;
+  .christmas-header > div:first-child img {
+    width: 130px;
+  }
 }

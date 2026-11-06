@@ -5,7 +5,7 @@ import MetaPixel from "@/components/MetaPixel";
 
 export const metadata: Metadata = {
   title: "Checkout | Pezinho Fofo",
-  description: "Finalize sua compra com segurança via PIX",
+  description: "Presenteie quem você ama neste Natal. Finalize sua compra com segurança.",
 };
 
 export default function RootLayout({
@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className="bg-[#d6eef9] min-h-screen antialiased">
+      <body className="christmas-body min-h-screen antialiased">
         <MetaPixel />
         {children}
         <Analytics />
