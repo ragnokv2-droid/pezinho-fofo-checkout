@@ -1,27 +1,19 @@
-# Mundo Atleta – Checkout Transparente (Next.js + AbacatePay)
+# Pé de Criança — Checkout de Natal
 
-Checkout em 3 etapas com desconto PIX, integração ViaCEP e AbacatePay.
+Checkout em 3 etapas para a Sandália Stitch Grendene Kids + Bolsa Stitch, com consulta de CEP, pagamento exclusivamente via PIX e rastreamento Meta.
 
-## Produto
+## Produto e pagamento
 
-- **Aparelho Abdominal AB Tomic**
-- Preço normal: **R$ 109,90**
-- Preço no PIX (5% OFF): **R$ 104,40**
+- Produto: **Sandália Stitch Grendene Kids + Bolsa Stitch**
+- Preço único do produto: **R$ 39,90**
+- Pagamento: **PIX**
+- Frete: Correios grátis ou SEDEX conforme opção selecionada no checkout
+- Não há desconto por forma de pagamento nem integração InfinitePay/cartão.
 
 ## Como rodar localmente
 
 ```bash
-# 1. Instalar dependências
 npm install
-
-# 2. Configurar variáveis de ambiente
-cp .env.example .env.local
-# Edite .env.local e coloque sua chave da AbacatePay
-
-# 3. Coloque a imagem do produto em:
-#    public/ab-tomic.png
-
-# 4. Rodar
 npm run dev
 ```
 
@@ -29,24 +21,19 @@ Acesse: http://localhost:3000
 
 ## Deploy na Vercel
 
-1. Suba o projeto no GitHub
-2. Importe no [vercel.com](https://vercel.com)
-3. Em **Settings → Environment Variables** adicione:
-   - `ABACATEPAY_API_KEY` = sua chave (dev ou produção)
-4. Deploy
+1. Envie o projeto ao GitHub.
+2. Importe ou aguarde o deploy do projeto na Vercel.
+3. Configure as variáveis de ambiente descritas em `PEZINHO-FOFO-SETUP.md`.
 
-## Estrutura das etapas
+## Etapas
 
-1. **Identificação** → Nome, e-mail, CPF, celular
-2. **Entrega** → CEP (busca automática ViaCEP) + endereço completo
-3. **Pagamento** → Gera QR Code PIX via API AbacatePay (`/v2/transparents/create`)
-
-## Webhook (opcional)
-
-Para receber confirmação de pagamento em tempo real, configure o webhook no dashboard da AbacatePay apontando para uma rota sua (ex: `/api/webhook`).
+1. **Identificação** — nome, e-mail, CPF e celular.
+2. **Entrega** — CEP, endereço e escolha do frete.
+3. **Pagamento** — geração de QR Code PIX e código copia e cola.
 
 ## Personalização
 
-- Logo: edite `src/components/Header.tsx` ou coloque uma imagem em `/public`
-- Cores: `tailwind.config.ts`
-- Preço / produto: `src/lib/product.ts`
+- Logo: `public/logo.png`
+- Imagens do produto: `public/`
+- Preço e produto: `src/lib/product.ts`
+- Tema natalino: `src/app/globals.css` e componentes em `src/components/`
