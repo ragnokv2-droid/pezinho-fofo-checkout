@@ -19,14 +19,14 @@ export default function ProductSummary({
   const total = totalAmount ?? PRODUCT.price + shippingPrice;
 
   return (
-    <div className="bg-white/95 border-b border-gray-100">
+    <div className="bg-white border-y border-amber-100">
       <button
         type="button"
         onClick={() => setOpen(!open)}
         className="w-full px-4 py-3 flex items-center justify-between gap-3"
       >
         <div className="text-left min-w-0">
-          <p className="text-xs font-semibold text-gray-500 tracking-wide uppercase">
+          <p className="text-xs font-semibold text-gray-600 tracking-wide uppercase">
             Resumo (1)
           </p>
           <p className="text-[11px] text-gray-400 mt-0.5">
@@ -59,16 +59,10 @@ export default function ProductSummary({
               <p className="text-sm font-semibold text-gray-900 leading-tight">
                 {PRODUCT.name}
               </p>
-              {size && (
-                <p className="text-xs font-semibold text-blue-900 mt-1">
-                  Tamanho: {size}
-                </p>
-              )}
-              <div className="mt-1 flex items-baseline gap-2 flex-wrap">
-                <span className="text-sm font-bold text-gray-900">
-                  {formatBRL(PRODUCT.price)}
-                </span>
-              </div>
+              {size && <p className="text-xs font-semibold text-blue-900 mt-1">Tamanho: {size}</p>}
+              <p className="mt-1 text-sm font-bold text-gray-900">
+                {formatBRL(PRODUCT.price)}
+              </p>
             </div>
           </div>
 
@@ -82,13 +76,13 @@ export default function ProductSummary({
           {shippingPrice === 0 && totalAmount !== undefined && (
             <div className="mt-3 pt-2 border-t border-gray-50 flex justify-between text-xs text-gray-600">
               <span>Frete (CORREIOS)</span>
-              <span className="text-teal-700 font-medium">Grátis</span>
+              <span className="text-green-700 font-medium">Grátis</span>
             </div>
           )}
 
           <div className="mt-2 flex justify-between text-sm font-bold text-gray-900">
             <span>Total</span>
-            <span className="text-teal-700">{formatBRL(total)}</span>
+            <span className="text-green-700">{formatBRL(total)}</span>
           </div>
         </div>
       )}

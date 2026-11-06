@@ -9,14 +9,14 @@ const steps = [
 
 export default function StepIndicator({ current }: { current: Step }) {
   return (
-    <div className="px-4 py-5 bg-transparent border-b border-gray-100">
+    <div className="px-4 py-5 bg-white border-b border-gray-100">
       <div className="flex items-start justify-between relative max-w-md mx-auto">
         {/* linha de fundo */}
         <div className="absolute top-4 left-[16%] right-[16%] h-[2px] bg-gray-200 z-0" />
 
         {/* linha ativa */}
         <div
-          className="absolute top-4 left-[16%] h-[2px] bg-[#FF1971] z-0 transition-all duration-300"
+          className="absolute top-4 left-[16%] h-[2px] bg-[#C91F32] z-0 transition-all duration-300"
           style={{
             width:
               current === 1 ? "0%" : current === 2 ? "34%" : "68%",
@@ -36,7 +36,7 @@ export default function StepIndicator({ current }: { current: Step }) {
                 className={clsx(
                   "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-colors",
                   (isCompleted || isActive) &&
-                    "bg-[#FF1971] border-[#FF1971] text-white",
+                    "bg-[#C91F32] border-[#C91F32] text-white",
                   !isCompleted &&
                     !isActive &&
                     "bg-white border-gray-300 text-gray-400"
@@ -49,7 +49,7 @@ export default function StepIndicator({ current }: { current: Step }) {
                 className={clsx(
                   "text-[11px] mt-2 text-center leading-tight px-1",
                   isActive
-                    ? "text-[#FF1971] font-semibold"
+                    ? "text-[#C91F32] font-semibold"
                     : "text-gray-400"
                 )}
               >
