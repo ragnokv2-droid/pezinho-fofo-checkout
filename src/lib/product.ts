@@ -1,8 +1,7 @@
 export const PRODUCT = {
   id: "sandalia-stitch-bolsa",
   name: "Sandália Stitch Grendene Kids + Bolsa Stitch",
-  originalPrice: 6990, // R$ 69,90 (apenas referência, não mostrado)
-  price: 3990, // R$ 39,90 - preço único
+  price: 3990, // Preço único: R$ 39,90
   image: "/sandalia-stitch-bolsa.webp",
   description: "Sandália Stitch Grendene Kids acompanhada de Bolsa Stitch",
 };
