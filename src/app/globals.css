@@ -3,13 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #fffaf1;
+  --background: #ffffff;
   --foreground: #171717;
-}
-
-html,
-body {
-  min-height: 100%;
 }
 
 body {
@@ -25,114 +20,95 @@ button {
   font-size: 16px; /* evita zoom no iOS */
 }
 
+/* Remove setas do number input */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.christmas-body {
-  background: #fffaf1;
-}
-
-.christmas-shell {
-  background: #fffaf1;
-  isolation: isolate;
-}
-
-.christmas-content {
+/* =========================================================
+   TEMA NATAL — Pé de Criança
+   (aplicado somente ao checkout, via .xmas-shell)
+   ========================================================= */
+.xmas-shell {
+  --xw: min(100vw, 549px);
+  position: relative;
+  max-width: 549px;
+  margin: 0 auto;
   min-height: 100vh;
-  background: rgba(255, 255, 255, 0.97);
-  box-shadow: 0 0 22px rgba(115, 76, 32, 0.08);
+  font-family: var(--font-xmas), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #0b1033;
+  background:
+    radial-gradient(circle at 12% 38%, rgba(255, 255, 255, 0.9) 0 2px, transparent 3px),
+    radial-gradient(circle at 88% 30%, rgba(255, 255, 255, 0.9) 0 2.5px, transparent 3.5px),
+    radial-gradient(circle at 8% 64%, rgba(255, 255, 255, 0.8) 0 2px, transparent 3px),
+    radial-gradient(circle at 93% 72%, rgba(255, 255, 255, 0.8) 0 2px, transparent 3px),
+    linear-gradient(180deg, #f4fafe 0, #e6f4fe 38%, #d8edfd 100%);
+  box-shadow: 0 0 40px rgba(30, 90, 160, 0.18);
+  overflow-x: clip;
 }
 
-.christmas-decor {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
+/* Suaviza a base do cabeçalho para fundir com o fundo da página */
+.xmas-header-img {
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 14px), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 14px), transparent);
 }
 
-.christmas-garland-left {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: clamp(48px, 13vw, 76px);
-  height: 205px;
-  object-fit: fill;
+/* Cartão branco principal (resumo + etapa atual) */
+.xmas-card {
+  position: relative;
+  z-index: 1;
+  margin: 14px calc(var(--xw) * 0.108) 0;
+  background: #ffffff;
+  border: 1px solid #e3e8f3;
+  border-radius: 12px;
+  box-shadow: 0 6px 22px rgba(32, 78, 140, 0.1);
 }
 
-.christmas-santa {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: clamp(76px, 17vw, 104px);
-  height: 137px;
-  object-fit: contain;
-  object-position: top right;
-}
-
-.christmas-tree-left {
-  position: absolute;
-  left: 0;
-  top: 42%;
-  width: clamp(48px, 13vw, 76px);
-  height: 219px;
-  object-fit: fill;
-}
-
-.christmas-tree-right {
-  position: absolute;
-  right: 0;
-  top: 48%;
-  width: clamp(48px, 13vw, 76px);
-  height: 249px;
-  object-fit: fill;
-}
-
-.christmas-header {
-  background: rgba(255, 255, 255, 0.98);
-  border-bottom: 1px solid #f3eadc;
-  padding-right: 76px;
-  overflow: visible;
-}
-
-.christmas-header-santa {
-  position: absolute;
-  top: -2px;
-  right: -2px;
+/* Árvores e presentes laterais — ficam fixas na base da tela */
+.xmas-deco {
+  position: fixed;
+  bottom: 0;
   z-index: 5;
-  width: clamp(76px, 17vw, 104px);
-  height: 137px;
-  object-fit: contain;
-  object-position: top right;
+  height: auto;
   pointer-events: none;
+  user-select: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 5%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 5%);
+}
+.xmas-deco-left {
+  left: calc(50% - var(--xw) / 2);
+  width: calc(var(--xw) * 0.1348);
+}
+.xmas-deco-right {
+  right: calc(50% - var(--xw) / 2);
+  width: calc(var(--xw) * 0.1184);
 }
 
-.christmas-banner {
-  background: #c91f32;
-  box-shadow: 0 2px 5px rgba(120, 25, 30, 0.12);
-  font-size: 13px;
+/* Campos do formulário */
+.xmas-input {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e0e3ee;
+  border-radius: 12px;
+  padding: 0.8rem 0.95rem;
+  font-size: 16px;
+  color: #0b1033;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.xmas-input::placeholder {
+  color: #a0a7c4;
+}
+.xmas-input:focus {
+  outline: none;
+  border-color: #0b5cd8;
+  box-shadow: 0 0 0 3px rgba(11, 92, 216, 0.18);
 }
 
-.christmas-script {
-  color: #ffd45a;
-  font-family: Georgia, "Times New Roman", serif;
-  font-style: italic;
-  font-size: 1.15em;
-}
-
-@media (max-width: 380px) {
-  .christmas-header {
-    padding-right: 66px;
-  }
-
-  .christmas-header > div:first-child {
-    width: 126px;
-  }
-
-  .christmas-header > div:first-child img {
-    width: 130px;
+@media (prefers-reduced-motion: reduce) {
+  .xmas-shell * {
+    transition: none !important;
+    animation: none !important;
   }
 }

@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
-import ChristmasBanner from "@/components/ChristmasBanner";
-import ChristmasDecor from "@/components/ChristmasDecor";
+import { ChristmasDecor, SnowGround } from "@/components/SnowGround";
 import StepIndicator from "@/components/StepIndicator";
 import ProductSummary from "@/components/ProductSummary";
 import Step1Identification from "@/components/Step1Identification";
@@ -61,7 +60,7 @@ export default function CheckoutPage() {
   const shippingPrice =
     SHIPPING_OPTIONS.find((o) => o.id === shipping)?.price ?? 0;
 
-  const totalAmount = PRODUCT.price + shippingPrice;
+  const totalAmount = PRODUCT.pixPrice + shippingPrice;
 
   useEffect(() => {
     const eventId = createEventId();
@@ -71,7 +70,7 @@ export default function CheckoutPage() {
       {
         content_name: PRODUCT.name,
         currency: "BRL",
-        value: PRODUCT.price / 100,
+        value: PRODUCT.pixPrice / 100,
       },
       eventId
     );
@@ -79,7 +78,7 @@ export default function CheckoutPage() {
     trackMetaCAPI({
       eventName: "InitiateCheckout",
       eventId,
-      value: PRODUCT.price / 100,
+      value: PRODUCT.pixPrice / 100,
       currency: "BRL",
       contentName: PRODUCT.name,
     });
@@ -130,44 +129,39 @@ export default function CheckoutPage() {
   }
 
   if (size === null) {
-    return <main className="christmas-shell min-h-screen w-full max-w-[560px] mx-auto" />;
+    return <div className="xmas-shell" />;
   }
 
   if (!size) {
     return (
-      <main className="christmas-shell min-h-screen w-full max-w-[560px] mx-auto shadow-xl relative overflow-hidden">
-        <ChristmasDecor />
-        <div className="christmas-content relative z-10 w-[calc(100%-32px)] max-w-[430px] mx-auto">
+      <div className="xmas-shell">
         <Header />
-        <div className="bg-white m-4 p-6 rounded-2xl border border-gray-100 text-center">
-          <h1 className="text-lg font-bold text-gray-900">Tamanho não identificado</h1>
-          <p className="text-sm text-gray-600 mt-2">Volte à loja Pezinho Fofo, escolha a numeração da sandália e clique novamente em comprar.</p>
+        <div className="xmas-card p-6 text-center">
+          <h1 className="text-lg font-extrabold text-[#0b1033]">Tamanho não identificado</h1>
+          <p className="text-[15px] text-[#475683] mt-2">Volte à loja Pezinho Fofo, escolha a numeração da sandália e clique novamente em comprar.</p>
         </div>
-        </div>
-      </main>
+        <SnowGround />
+        <ChristmasDecor />
+      </div>
     );
   }
 
   return (
-    <main className="christmas-shell min-h-screen w-full max-w-[560px] mx-auto shadow-xl relative overflow-hidden">
-      <ChristmasDecor />
-      <div className="christmas-content relative z-10 w-[calc(100%-32px)] max-w-[430px] mx-auto">
+    <div className="xmas-shell">
       <Header />
-      <ChristmasBanner />
 
       {/* Etapas e resumo aparecem normalmente.
           Quando o PIX é gerado, ambos desaparecem. */}
+      {!pixReady && <StepIndicator current={step} />}
+
+      <main className="xmas-card">
       {!pixReady && (
-        <>
-          <StepIndicator current={step} />
-
-          <ProductSummary
-            size={size}
-
-            shippingPrice={shippingPrice}
-            totalAmount={totalAmount}
-          />
-        </>
+        <ProductSummary
+          size={size}
+          showOriginal={step < 3}
+          shippingPrice={shippingPrice}
+          totalAmount={totalAmount}
+        />
       )}
 
       {step === 1 && (
@@ -256,7 +250,10 @@ export default function CheckoutPage() {
           }}
         />
       )}
-      </div>
-    </main>
+      </main>
+
+      <SnowGround />
+      <ChristmasDecor />
+    </div>
   );
 }
