@@ -4,32 +4,30 @@
  */
 export function ChristmasDecor() {
   return (
-    <div className="xmas-deco-layer" aria-hidden="true">
-      <div className="xmas-deco-col xmas-deco-col-left">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/natal-arvore-esq.webp"
-          alt=""
-          className="xmas-deco"
-          draggable={false}
-        />
-      </div>
-      <div className="xmas-deco-col xmas-deco-col-right">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/natal-arvore-dir.webp"
-          alt=""
-          className="xmas-deco"
-          draggable={false}
-        />
-      </div>
-    </div>
+    <>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/natal-arvore-esq.webp"
+        alt=""
+        aria-hidden="true"
+        className="xmas-deco xmas-deco-left"
+        draggable={false}
+      />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/natal-arvore-dir.webp"
+        alt=""
+        aria-hidden="true"
+        className="xmas-deco xmas-deco-right"
+        draggable={false}
+      />
+    </>
   );
 }
 
 export function SnowGround() {
   return (
-    <div aria-hidden="true" className="relative h-24 mt-6 pointer-events-none">
+    <div aria-hidden="true" className="relative h-28 -mt-2 pointer-events-none">
       <svg
         viewBox="0 0 549 112"
         preserveAspectRatio="none"
