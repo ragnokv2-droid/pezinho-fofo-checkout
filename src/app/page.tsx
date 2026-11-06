@@ -60,7 +60,7 @@ export default function CheckoutPage() {
   const shippingPrice =
     SHIPPING_OPTIONS.find((o) => o.id === shipping)?.price ?? 0;
 
-  const totalAmount = PRODUCT.pixPrice + shippingPrice;
+  const totalAmount = PRODUCT.price + shippingPrice;
 
   useEffect(() => {
     const eventId = createEventId();
@@ -70,7 +70,7 @@ export default function CheckoutPage() {
       {
         content_name: PRODUCT.name,
         currency: "BRL",
-        value: PRODUCT.pixPrice / 100,
+        value: PRODUCT.price / 100,
       },
       eventId
     );
@@ -78,18 +78,21 @@ export default function CheckoutPage() {
     trackMetaCAPI({
       eventName: "InitiateCheckout",
       eventId,
-      value: PRODUCT.pixPrice / 100,
+      value: PRODUCT.price / 100,
       currency: "BRL",
       contentName: PRODUCT.name,
     });
   }, []);
 
-
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const rawSize = params.get("tam") || params.get("tamanho") || "";
     const sizeNumber = Number(rawSize);
-    setSize(Number.isInteger(sizeNumber) && sizeNumber >= 20 && sizeNumber <= 36 ? String(sizeNumber) : "");
+    setSize(
+      Number.isInteger(sizeNumber) && sizeNumber >= 20 && sizeNumber <= 36
+        ? String(sizeNumber)
+        : ""
+    );
 
     const rawSource = String(params.get("source") || "DIRETO")
       .trim()
@@ -124,132 +127,196 @@ export default function CheckoutPage() {
     fetch("/api/leads", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...payload, produto: PRODUCT.name, tamanho: size || "", ...tracking }),
+      body: JSON.stringify({
+        ...payload,
+        produto: PRODUCT.name,
+        tamanho: size || "",
+        ...tracking,
+      }),
     }).catch(() => {});
   }
 
   if (size === null) {
-    return <div className="min-h-screen bg-gray-50 max-w-lg mx-auto" />;
+    return (
+      <div className="min-h-screen christmas-bg max-w-lg mx-auto" />
+    );
   }
 
   if (!size) {
     return (
-      <div className="min-h-screen bg-gray-50 max-w-lg mx-auto shadow-xl">
-        <Header />
-        <div className="bg-white m-4 p-6 rounded-2xl border border-gray-100 text-center">
-          <h1 className="text-lg font-bold text-gray-900">Tamanho não identificado</h1>
-          <p className="text-sm text-gray-600 mt-2">Volte à loja Pezinho Fofo, escolha a numeração da sandália e clique novamente em comprar.</p>
+      <div className="min-h-screen christmas-bg max-w-lg mx-auto shadow-xl relative overflow-hidden">
+        <div className="relative z-10">
+          <Header />
+          <div className="bg-white/95 backdrop-blur-sm m-4 p-6 rounded-2xl border border-white/50 text-center shadow-lg">
+            <h1 className="text-lg font-bold text-gray-900">
+              Tamanho não identificado
+            </h1>
+            <p className="text-sm text-gray-600 mt-2">
+              Volte à loja Pé de Criança, escolha a numeração da sandália e
+              clique novamente em comprar.
+            </p>
+          </div>
         </div>
+        <ChristmasDecorations />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 max-w-lg mx-auto shadow-xl">
-      <Header />
-      <PromoBanner />
+    <div className="min-h-screen christmas-bg max-w-lg mx-auto shadow-xl relative overflow-hidden">
+      {/* Camada de neve / fundo */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="snowflake snow-1">❄</div>
+        <div className="snowflake snow-2">❄</div>
+        <div className="snowflake snow-3">❅</div>
+        <div className="snowflake snow-4">❄</div>
+        <div className="snowflake snow-5">❅</div>
+        <div className="snowflake snow-6">❄</div>
+        <div className="snowflake snow-7">❅</div>
+        <div className="snowflake snow-8">❄</div>
+      </div>
 
-      {/* Etapas e resumo aparecem normalmente.
-          Quando o PIX é gerado, ambos desaparecem. */}
-      {!pixReady && (
-        <>
-          <StepIndicator current={step} />
+      <div className="relative z-10">
+        <Header />
+        <PromoBanner />
 
-          <ProductSummary
-            size={size}
-            showOriginal={step < 3}
-            shippingPrice={shippingPrice}
-            totalAmount={totalAmount}
-          />
-        </>
-      )}
+        {/* Etapas e resumo aparecem normalmente.
+            Quando o PIX é gerado, ambos desaparecem. */}
+        {!pixReady && (
+          <>
+            <div className="bg-white/95 backdrop-blur-sm">
+              <StepIndicator current={step} />
+            </div>
 
-      {step === 1 && (
-        <Step1Identification
-          data={customer}
-          onChange={setCustomer}
-          onNext={() => {
-            saveLead({
-              nome: customer.name,
-              email: customer.email,
-              telefone: customer.cellphone,
-              endereco: "",
-              frete: "",
-              valor: "",
-              status: "abandonado_dados",
-              etapa: 1,
-            });
+            <div className="bg-white/95 backdrop-blur-sm">
+              <ProductSummary
+                size={size}
+                shippingPrice={shippingPrice}
+                totalAmount={totalAmount}
+              />
+            </div>
+          </>
+        )}
 
-            setStep(2);
-          }}
-        />
-      )}
+        <div className="bg-white/95 backdrop-blur-sm min-h-[50vh]">
+          {step === 1 && (
+            <Step1Identification
+              data={customer}
+              onChange={setCustomer}
+              onNext={() => {
+                saveLead({
+                  nome: customer.name,
+                  email: customer.email,
+                  telefone: customer.cellphone,
+                  endereco: "",
+                  frete: "",
+                  valor: "",
+                  status: "abandonado_dados",
+                  etapa: 1,
+                });
 
-      {step === 2 && (
-        <Step2Address
-          data={address}
-          shipping={shipping}
-          onChange={setAddress}
-          onShippingChange={setShipping}
-          customerName={customer.name}
-          onNext={() => {
-            const eventId = createEventId();
+                setStep(2);
+              }}
+            />
+          )}
 
-            trackMetaEvent(
-              "AddPaymentInfo",
-              {
-                content_name: PRODUCT.name,
-                currency: "BRL",
-                value: totalAmount / 100,
-              },
-              eventId
-            );
+          {step === 2 && (
+            <Step2Address
+              data={address}
+              shipping={shipping}
+              onChange={setAddress}
+              onShippingChange={setShipping}
+              customerName={customer.name}
+              onNext={() => {
+                const eventId = createEventId();
 
-            trackMetaCAPI({
-              eventName: "AddPaymentInfo",
-              eventId,
-              value: totalAmount / 100,
-              currency: "BRL",
-              contentName: PRODUCT.name,
-              email: customer.email,
-              phone: customer.cellphone,
-              name: customer.name,
-            });
+                trackMetaEvent(
+                  "AddPaymentInfo",
+                  {
+                    content_name: PRODUCT.name,
+                    currency: "BRL",
+                    value: totalAmount / 100,
+                  },
+                  eventId
+                );
 
-            saveLead({
-              nome: customer.name,
-              email: customer.email,
-              telefone: customer.cellphone,
-              endereco: `${address.street}, ${address.number} - ${address.neighborhood}, ${address.city}/${address.state} - CEP ${address.zipCode}`,
-              frete: shipping || "",
-              valor: (totalAmount / 100).toFixed(2),
-              status: "abandonado_frete",
-              etapa: 2,
-            });
+                trackMetaCAPI({
+                  eventName: "AddPaymentInfo",
+                  eventId,
+                  value: totalAmount / 100,
+                  currency: "BRL",
+                  contentName: PRODUCT.name,
+                  email: customer.email,
+                  phone: customer.cellphone,
+                  name: customer.name,
+                });
 
-            setStep(3);
-          }}
-          onBack={() => setStep(1)}
-        />
-      )}
+                saveLead({
+                  nome: customer.name,
+                  email: customer.email,
+                  telefone: customer.cellphone,
+                  endereco: `${address.street}, ${address.number} - ${address.neighborhood}, ${address.city}/${address.state} - CEP ${address.zipCode}`,
+                  frete: shipping || "",
+                  valor: (totalAmount / 100).toFixed(2),
+                  status: "abandonado_frete",
+                  etapa: 2,
+                });
 
-      {step === 3 && (
-        <Step3Payment
-          formData={{
-            ...customer,
-            ...address,
-            shipping: shipping || undefined,
-            size,
-            ...tracking,
-          }}
-          totalAmount={totalAmount}
-          onPixReady={setPixReady}
-          onBack={() => {
-            setPixReady(false);
-            setStep(2);
-          }}
-        />
-      )}
+                setStep(3);
+              }}
+              onBack={() => setStep(1)}
+            />
+          )}
+
+          {step === 3 && (
+            <Step3Payment
+              formData={{
+                ...customer,
+                ...address,
+                shipping: shipping || undefined,
+                size,
+                ...tracking,
+              }}
+              totalAmount={totalAmount}
+              onPixReady={setPixReady}
+              onBack={() => {
+                setPixReady(false);
+                setStep(2);
+              }}
+            />
+          )}
+        </div>
+      </div>
+
+      <ChristmasDecorations />
     </div>
+  );
+}
+
+function ChristmasDecorations() {
+  return (
+    <>
+      {/* Árvore esquerda */}
+      <div className="absolute left-0 bottom-0 text-6xl sm:text-7xl opacity-90 select-none pointer-events-none z-0 drop-shadow-lg">
+        🎄
+      </div>
+      {/* Árvore direita */}
+      <div className="absolute right-0 bottom-0 text-6xl sm:text-7xl opacity-90 select-none pointer-events-none z-0 drop-shadow-lg">
+        🎄
+      </div>
+      {/* Presentes inferiores */}
+      <div className="absolute left-12 bottom-2 text-3xl select-none pointer-events-none z-0">
+        🎁
+      </div>
+      <div className="absolute right-14 bottom-3 text-3xl select-none pointer-events-none z-0">
+        🎁
+      </div>
+      <div className="absolute left-24 bottom-1 text-2xl select-none pointer-events-none z-0">
+        🎀
+      </div>
+      <div className="absolute right-28 bottom-0 text-2xl select-none pointer-events-none z-0">
+        ⭐
+      </div>
+    </>
   );
 }

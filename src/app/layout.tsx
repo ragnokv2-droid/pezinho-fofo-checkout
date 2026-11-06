@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className="bg-gray-50 min-h-screen antialiased">
+      <body className="bg-[#d6eef9] min-h-screen antialiased">
         <MetaPixel />
         {children}
         <Analytics />

@@ -10,7 +10,8 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -25,4 +26,92 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+/* ========== Tema de Natal ========== */
+.christmas-bg {
+  background: linear-gradient(
+    180deg,
+    #e8f4fc 0%,
+    #d6eef9 30%,
+    #c5e6f5 60%,
+    #b8dff0 100%
+  );
+  position: relative;
+}
+
+/* Flocos de neve caindo */
+.snowflake {
+  position: absolute;
+  top: -10%;
+  color: #ffffff;
+  font-size: 1rem;
+  opacity: 0.7;
+  animation: fall linear infinite;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.snow-1 {
+  left: 8%;
+  animation-duration: 12s;
+  animation-delay: 0s;
+  font-size: 1.1rem;
+}
+.snow-2 {
+  left: 22%;
+  animation-duration: 15s;
+  animation-delay: 2s;
+  font-size: 0.9rem;
+}
+.snow-3 {
+  left: 38%;
+  animation-duration: 11s;
+  animation-delay: 4s;
+  font-size: 1.3rem;
+}
+.snow-4 {
+  left: 55%;
+  animation-duration: 14s;
+  animation-delay: 1s;
+  font-size: 1rem;
+}
+.snow-5 {
+  left: 70%;
+  animation-duration: 13s;
+  animation-delay: 3s;
+  font-size: 0.85rem;
+}
+.snow-6 {
+  left: 82%;
+  animation-duration: 16s;
+  animation-delay: 5s;
+  font-size: 1.2rem;
+}
+.snow-7 {
+  left: 15%;
+  animation-duration: 18s;
+  animation-delay: 6s;
+  font-size: 0.95rem;
+}
+.snow-8 {
+  left: 90%;
+  animation-duration: 10s;
+  animation-delay: 2.5s;
+  font-size: 1.05rem;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.2;
+  }
 }
