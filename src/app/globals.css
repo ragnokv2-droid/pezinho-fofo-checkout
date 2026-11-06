@@ -59,7 +59,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .xmas-card {
   position: relative;
   z-index: 1;
-  margin: 14px calc(var(--xw) * 0.08) 0;
+  margin: 14px calc(var(--xw) * 0.108) 0;
   background: #ffffff;
   border: 1px solid #e3e8f3;
   border-radius: 12px;
