@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PRODUCT } from "@/lib/product";
 
-const DEFAULT_CARD_PRICE_CENTS = PRODUCT.cardPrice;
+const DEFAULT_CARD_PRICE_CENTS = PRODUCT.price;
 
 function normalizeAmount(value: unknown): number {
   const amount = Number(value);
