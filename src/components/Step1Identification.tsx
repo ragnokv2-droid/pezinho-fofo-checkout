@@ -53,17 +53,17 @@ export default function Step1Identification({
   }
 
   return (
-    <div className="px-4 py-6 bg-white">
+    <div className="px-4 pt-5 pb-6">
       <div className="mb-5">
-        <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-          <span className="w-7 h-7 rounded-full bg-[#0864C7] text-white text-sm flex items-center justify-center font-bold">
+        <h2 className="text-xl font-extrabold text-[#0b1033] flex items-center gap-3">
+          <span className="w-8 h-8 rounded-full bg-[#0b5cd8] text-white text-base flex items-center justify-center font-extrabold shrink-0">
             1
           </span>
 
           Identificação
         </h2>
 
-        <p className="text-sm text-gray-500 mt-2 leading-relaxed">
+        <p className="text-[15px] text-[#475683] mt-3 leading-relaxed">
           Utilizaremos seu e-mail para identificar seu perfil,
           histórico de compra, notificação de pedidos e carrinho
           de compras.
@@ -72,7 +72,7 @@ export default function Step1Identification({
 
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-800 mb-1.5">
+          <label className="block text-[15px] font-bold text-[#0b1033] mb-1.5">
             Nome completo
           </label>
 
@@ -81,12 +81,12 @@ export default function Step1Identification({
             value={data.name}
             onChange={(e) => set("name", e.target.value)}
             placeholder="ex.: Maria de Almeida Cruz"
-            className="w-full border border-gray-200 rounded-lg px-3.5 py-3 text-sm text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0864C7]/30 focus:border-[#0864C7]"
+            className="xmas-input"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-800 mb-1.5">
+          <label className="block text-[15px] font-bold text-[#0b1033] mb-1.5">
             E-mail
           </label>
 
@@ -95,12 +95,12 @@ export default function Step1Identification({
             value={data.email}
             onChange={(e) => set("email", e.target.value)}
             placeholder="ex.: maria@gmail.com"
-            className="w-full border border-gray-200 rounded-lg px-3.5 py-3 text-sm text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0864C7]/30 focus:border-[#0864C7]"
+            className="xmas-input"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-800 mb-1.5">
+          <label className="block text-[15px] font-bold text-[#0b1033] mb-1.5">
             CPF
           </label>
 
@@ -112,17 +112,17 @@ export default function Step1Identification({
               set("taxId", maskCPF(e.target.value))
             }
             placeholder="000.000.000-00"
-            className="w-full border border-gray-200 rounded-lg px-3.5 py-3 text-sm text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0864C7]/30 focus:border-[#0864C7]"
+            className="xmas-input"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-800 mb-1.5">
+          <label className="block text-[15px] font-bold text-[#0b1033] mb-1.5">
             Celular / WhatsApp
           </label>
 
           <div className="flex gap-2">
-            <div className="flex items-center px-3 border border-gray-200 rounded-lg bg-gray-50 text-sm text-gray-500">
+            <div className="flex items-center px-3 border border-[#e0e3ee] rounded-xl bg-[#f4f7fd] text-sm text-[#5d6c9c] font-semibold">
               +55
             </div>
 
@@ -137,7 +137,7 @@ export default function Step1Identification({
                 )
               }
               placeholder="(00) 00000-0000"
-              className="flex-1 border border-gray-200 rounded-lg px-3.5 py-3 text-sm text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0864C7]/30 focus:border-[#0864C7]"
+              className="flex-1 min-w-0 xmas-input"
             />
           </div>
         </div>
@@ -147,7 +147,7 @@ export default function Step1Identification({
         type="button"
         disabled={!valid}
         onClick={onNext}
-        className="mt-8 w-full bg-[#0864C7] hover:bg-[#0755A8] disabled:bg-gray-300 disabled:text-gray-500 text-white font-semibold py-3.5 rounded-lg text-sm transition-colors"
+        className="mt-8 w-full bg-[#0b5cd8] hover:bg-[#0948b0] disabled:bg-gray-300 disabled:text-[#5d6c9c] text-white font-semibold py-3.5 rounded-xl text-sm transition-colors"
       >
         Ir para Entrega
       </button>

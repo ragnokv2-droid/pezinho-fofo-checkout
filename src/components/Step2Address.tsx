@@ -26,7 +26,7 @@ function maskCep(value: string) {
 
 function CheckIcon() {
   return (
-    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#0864C7] text-sm font-bold">
+    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#0b5cd8] text-sm font-bold">
       ✓
     </span>
   );
@@ -131,33 +131,33 @@ export default function Step2Address({
 
   if (phase === "shipping") {
     return (
-      <div className="px-4 py-6 bg-white">
+      <div className="px-4 pt-5 pb-6">
         <div className="mb-5">
-          <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-            <span className="w-7 h-7 rounded-full bg-[#0864C7] text-white text-sm flex items-center justify-center font-bold">
+          <h2 className="text-xl font-extrabold text-[#0b1033] flex items-center gap-3">
+            <span className="w-8 h-8 rounded-full bg-[#0b5cd8] text-white text-base flex items-center justify-center font-extrabold shrink-0">
               2
             </span>
 
             Entrega
           </h2>
 
-          <p className="text-sm text-gray-500 mt-2 leading-relaxed">
+          <p className="text-[15px] text-[#475683] mt-3 leading-relaxed">
             Cadastre ou selecione um endereço
           </p>
         </div>
 
         <div className="mb-6">
-          <p className="text-sm font-medium text-[#0864C7] mb-2">
+          <p className="text-sm font-medium text-[#0b5cd8] mb-2">
             + Novo endereço
           </p>
 
-          <div className="border border-gray-200 rounded-xl p-4 flex gap-3 items-start">
-            <div className="mt-0.5 w-5 h-5 rounded-full border-2 border-[#0864C7] flex items-center justify-center flex-shrink-0">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#0864C7]" />
+          <div className="border border-[#e0e3ee] rounded-xl p-4 flex gap-3 items-start">
+            <div className="mt-0.5 w-5 h-5 rounded-full border-2 border-[#0b5cd8] flex items-center justify-center flex-shrink-0">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#0b5cd8]" />
             </div>
 
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900 leading-snug">
+              <p className="text-sm font-medium text-[#0b1033] leading-snug">
                 {data.street}, {data.number}
                 {data.complement
                   ? ` - ${data.complement}`
@@ -165,13 +165,13 @@ export default function Step2Address({
                 - {data.neighborhood}
               </p>
 
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-[#5d6c9c] mt-1">
                 {data.city}-{data.state} | CEP{" "}
                 {data.zipCode}
               </p>
 
               {recipient && (
-                <p className="text-xs text-gray-500 mt-0.5">
+                <p className="text-xs text-[#5d6c9c] mt-0.5">
                   Destinatário: {recipient}
                 </p>
               )}
@@ -180,7 +180,7 @@ export default function Step2Address({
             <button
               type="button"
               onClick={() => setPhase("address")}
-              className="text-xs text-gray-500 hover:text-[#0864C7] font-medium flex-shrink-0"
+              className="text-xs text-[#5d6c9c] hover:text-[#0b5cd8] font-medium flex-shrink-0"
             >
               Editar
             </button>
@@ -188,7 +188,7 @@ export default function Step2Address({
         </div>
 
         <div>
-          <p className="text-sm font-semibold text-gray-900 mb-3">
+          <p className="text-sm font-semibold text-[#0b1033] mb-3">
             Escolha uma forma de entrega:
           </p>
 
@@ -206,28 +206,28 @@ export default function Step2Address({
                   }
                   className={`w-full flex items-center gap-3 p-3.5 rounded-xl border-2 text-left transition-colors ${
                     selected
-                      ? "border-[#0864C7] bg-[#0864C7]/5"
-                      : "border-gray-200 bg-white hover:border-gray-300"
+                      ? "border-[#0b5cd8] bg-[#0b5cd8]/5"
+                      : "border-[#e0e3ee] bg-white hover:border-gray-300"
                   }`}
                 >
                   <div
                     className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
                       selected
-                        ? "border-[#0864C7]"
+                        ? "border-[#0b5cd8]"
                         : "border-gray-300"
                     }`}
                   >
                     {selected && (
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#0864C7]" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-[#0b5cd8]" />
                     )}
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-[#0b1033]">
                       {option.name}
                     </p>
 
-                    <p className="text-xs text-gray-500 mt-0.5">
+                    <p className="text-xs text-[#5d6c9c] mt-0.5">
                       {option.days}
                       {option.description
                         ? ` · ${option.description}`
@@ -235,9 +235,9 @@ export default function Step2Address({
                     </p>
                   </div>
 
-                  <div className="text-sm font-semibold text-gray-900 flex-shrink-0">
+                  <div className="text-sm font-semibold text-[#0b1033] flex-shrink-0">
                     {option.price === 0 ? (
-                      <span className="text-[#0864C7]">
+                      <span className="text-[#0b5cd8]">
                         Grátis
                       </span>
                     ) : (
@@ -254,7 +254,7 @@ export default function Step2Address({
           <button
             type="button"
             onClick={() => setPhase("address")}
-            className="flex-1 border border-gray-300 text-gray-700 font-medium py-3.5 rounded-lg hover:bg-gray-50 text-sm"
+            className="flex-1 border border-gray-300 text-gray-700 font-medium py-3.5 rounded-xl hover:bg-gray-50 text-sm"
           >
             Voltar
           </button>
@@ -263,7 +263,7 @@ export default function Step2Address({
             type="button"
             onClick={onNext}
             disabled={!canGoPayment}
-            className="flex-[2] bg-[#0864C7] hover:bg-[#0755A8] disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed text-white font-semibold py-3.5 rounded-lg text-sm transition-colors"
+            className="flex-[2] bg-[#0b5cd8] hover:bg-[#0948b0] disabled:bg-gray-300 disabled:text-[#5d6c9c] disabled:cursor-not-allowed text-white font-semibold py-3.5 rounded-xl text-sm transition-colors"
           >
             Ir para Pagamento
           </button>
@@ -273,17 +273,17 @@ export default function Step2Address({
   }
 
   return (
-    <div className="px-4 py-6 bg-white">
+    <div className="px-4 pt-5 pb-6">
       <div className="mb-5">
-        <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-          <span className="w-7 h-7 rounded-full bg-[#0864C7] text-white text-sm flex items-center justify-center font-bold">
+        <h2 className="text-xl font-extrabold text-[#0b1033] flex items-center gap-3">
+          <span className="w-8 h-8 rounded-full bg-[#0b5cd8] text-white text-base flex items-center justify-center font-extrabold shrink-0">
             2
           </span>
 
           Entrega
         </h2>
 
-        <p className="text-sm text-gray-500 mt-2 leading-relaxed">
+        <p className="text-[15px] text-[#475683] mt-3 leading-relaxed">
           Cadastre ou selecione um endereço
         </p>
       </div>
@@ -291,14 +291,14 @@ export default function Step2Address({
       <div className="space-y-4">
         <div>
           <div className="flex items-end justify-between gap-3 mb-1.5">
-            <label className="block text-sm font-medium text-gray-800">
+            <label className="block text-[15px] font-bold text-[#0b1033]">
               CEP
             </label>
 
             {cepFound &&
               data.city &&
               data.state && (
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-[#5d6c9c]">
                   {data.city} / {data.state}
                 </span>
               )}
@@ -320,7 +320,7 @@ export default function Step2Address({
                   ),
                 })
               }
-              className="w-full border border-gray-200 rounded-lg px-3.5 py-3 pr-10 text-sm text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0864C7]/30 focus:border-[#0864C7]"
+              className="xmas-input pr-10"
             />
 
             {loadingCep && (
@@ -343,7 +343,7 @@ export default function Step2Address({
         {cepFound && (
           <>
             <div>
-              <label className="block text-sm font-medium text-gray-800 mb-1.5">
+              <label className="block text-[15px] font-bold text-[#0b1033] mb-1.5">
                 Endereço
               </label>
 
@@ -357,7 +357,7 @@ export default function Step2Address({
                       street: e.target.value,
                     })
                   }
-                  className="w-full border border-gray-200 rounded-lg px-3.5 py-3 pr-10 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0864C7]/30 focus:border-[#0864C7]"
+                  className="xmas-input pr-10"
                 />
 
                 {data.street.trim().length >
@@ -367,7 +367,7 @@ export default function Step2Address({
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-sm font-medium text-gray-800 mb-1.5">
+                <label className="block text-[15px] font-bold text-[#0b1033] mb-1.5">
                   Número
                 </label>
 
@@ -384,7 +384,7 @@ export default function Step2Address({
                         number: e.target.value,
                       })
                     }
-                    className="w-full border border-gray-200 rounded-lg px-3.5 py-3 pr-10 text-sm text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0864C7]/30 focus:border-[#0864C7]"
+                    className="xmas-input pr-10"
                     autoFocus
                   />
 
@@ -394,7 +394,7 @@ export default function Step2Address({
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-800 mb-1.5">
+                <label className="block text-[15px] font-bold text-[#0b1033] mb-1.5">
                   Bairro
                 </label>
 
@@ -409,7 +409,7 @@ export default function Step2Address({
                           e.target.value,
                       })
                     }
-                    className="w-full border border-gray-200 rounded-lg px-3.5 py-3 pr-10 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0864C7]/30 focus:border-[#0864C7]"
+                    className="xmas-input pr-10"
                   />
 
                   {data.neighborhood.trim()
@@ -421,7 +421,7 @@ export default function Step2Address({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-800 mb-1.5">
+              <label className="block text-[15px] font-bold text-[#0b1033] mb-1.5">
                 Complemento{" "}
                 <span className="text-gray-400 font-normal">
                   (opcional)
@@ -437,12 +437,12 @@ export default function Step2Address({
                     complement: e.target.value,
                   })
                 }
-                className="w-full border border-gray-200 rounded-lg px-3.5 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0864C7]/30 focus:border-[#0864C7]"
+                className="xmas-input"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-800 mb-1.5">
+              <label className="block text-[15px] font-bold text-[#0b1033] mb-1.5">
                 Destinatário
               </label>
 
@@ -454,7 +454,7 @@ export default function Step2Address({
                     setRecipient(e.target.value)
                   }
                   placeholder="Nome de quem vai receber"
-                  className="w-full border border-gray-200 rounded-lg px-3.5 py-3 pr-10 text-sm text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0864C7]/30 focus:border-[#0864C7]"
+                  className="xmas-input pr-10"
                 />
 
                 {recipient.trim().length >
@@ -469,7 +469,7 @@ export default function Step2Address({
         <button
           type="button"
           onClick={onBack}
-          className="flex-1 border border-gray-300 text-gray-700 font-medium py-3.5 rounded-lg hover:bg-gray-50 text-sm"
+          className="flex-1 border border-gray-300 text-gray-700 font-medium py-3.5 rounded-xl hover:bg-gray-50 text-sm"
         >
           Voltar
         </button>
@@ -480,7 +480,7 @@ export default function Step2Address({
             setPhase("shipping")
           }
           disabled={!addressComplete}
-          className="flex-[2] bg-[#0864C7] hover:bg-[#0755A8] disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed text-white font-semibold py-3.5 rounded-lg text-sm transition-colors"
+          className="flex-[2] bg-[#0b5cd8] hover:bg-[#0948b0] disabled:bg-gray-300 disabled:text-[#5d6c9c] disabled:cursor-not-allowed text-white font-semibold py-3.5 rounded-xl text-sm transition-colors"
         >
           Continuar
         </button>
