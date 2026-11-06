@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: #e8f4fc;
   --foreground: #171717;
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background: #d6eef9;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -18,26 +18,46 @@ body {
 input,
 select,
 button {
-  font-size: 16px; /* evita zoom no iOS */
+  font-size: 16px;
 }
 
-/* Remove setas do number input */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* ========== Tema de Natal ========== */
+/* ========== Tema de Natal - Fundo ========== */
 .christmas-bg {
   background: linear-gradient(
     180deg,
-    #e8f4fc 0%,
-    #d6eef9 30%,
-    #c5e6f5 60%,
-    #b8dff0 100%
+    #eaf6fd 0%,
+    #d4eef9 25%,
+    #c5e7f5 50%,
+    #b8dff0 75%,
+    #a8d5e8 100%
   );
   position: relative;
+  overflow: hidden;
+}
+
+/* Neve no chão */
+.christmas-bg::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 30%,
+    rgba(255, 255, 255, 0.85) 70%,
+    #ffffff 100%
+  );
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* Flocos de neve caindo */
@@ -46,72 +66,88 @@ input[type="number"]::-webkit-outer-spin-button {
   top: -10%;
   color: #ffffff;
   font-size: 1rem;
-  opacity: 0.7;
+  opacity: 0.85;
   animation: fall linear infinite;
-  text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.9);
   pointer-events: none;
-  z-index: 1;
+  z-index: 5;
+  user-select: none;
 }
 
-.snow-1 {
-  left: 8%;
-  animation-duration: 12s;
-  animation-delay: 0s;
-  font-size: 1.1rem;
-}
-.snow-2 {
-  left: 22%;
-  animation-duration: 15s;
-  animation-delay: 2s;
-  font-size: 0.9rem;
-}
-.snow-3 {
-  left: 38%;
-  animation-duration: 11s;
-  animation-delay: 4s;
-  font-size: 1.3rem;
-}
-.snow-4 {
-  left: 55%;
-  animation-duration: 14s;
-  animation-delay: 1s;
-  font-size: 1rem;
-}
-.snow-5 {
-  left: 70%;
-  animation-duration: 13s;
-  animation-delay: 3s;
-  font-size: 0.85rem;
-}
-.snow-6 {
-  left: 82%;
-  animation-duration: 16s;
-  animation-delay: 5s;
-  font-size: 1.2rem;
-}
-.snow-7 {
-  left: 15%;
-  animation-duration: 18s;
-  animation-delay: 6s;
-  font-size: 0.95rem;
-}
-.snow-8 {
-  left: 90%;
-  animation-duration: 10s;
-  animation-delay: 2.5s;
-  font-size: 1.05rem;
-}
+.snow-1 { left: 5%;  animation-duration: 11s; animation-delay: 0s;   font-size: 1.2rem; }
+.snow-2 { left: 15%; animation-duration: 14s; animation-delay: 1.5s; font-size: 0.9rem; }
+.snow-3 { left: 28%; animation-duration: 10s; animation-delay: 3s;   font-size: 1.4rem; }
+.snow-4 { left: 42%; animation-duration: 13s; animation-delay: 0.8s; font-size: 1rem; }
+.snow-5 { left: 55%; animation-duration: 12s; animation-delay: 2.2s; font-size: 1.1rem; }
+.snow-6 { left: 68%; animation-duration: 15s; animation-delay: 4s;   font-size: 0.85rem; }
+.snow-7 { left: 78%; animation-duration: 11s; animation-delay: 1s;   font-size: 1.3rem; }
+.snow-8 { left: 90%; animation-duration: 13s; animation-delay: 2.8s; font-size: 1rem; }
+.snow-9 { left: 10%; animation-duration: 16s; animation-delay: 5s;   font-size: 0.95rem; }
+.snow-10{ left: 85%; animation-duration: 9s;  animation-delay: 3.5s; font-size: 1.15rem; }
 
 @keyframes fall {
   0% {
     transform: translateY(-10vh) rotate(0deg);
-    opacity: 0.8;
+    opacity: 0.9;
   }
-  50% {
+  80% {
     opacity: 0.6;
   }
   100% {
     transform: translateY(110vh) rotate(360deg);
-    opacity: 0.2;
+    opacity: 0.15;
   }
+}
+
+/* Árvores e presentes */
+.tree-left,
+.tree-right {
+  position: absolute;
+  bottom: 20px;
+  z-index: 3;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+.tree-left {
+  left: -18px;
+  font-size: 7.5rem;
+  line-height: 1;
+  transform: scaleX(-1);
+}
+
+.tree-right {
+  right: -18px;
+  font-size: 7.5rem;
+  line-height: 1;
+}
+
+.gifts-left {
+  position: absolute;
+  bottom: 8px;
+  left: 55px;
+  z-index: 4;
+  pointer-events: none;
+  user-select: none;
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+}
+
+.gifts-right {
+  position: absolute;
+  bottom: 8px;
+  right: 55px;
+  z-index: 4;
+  pointer-events: none;
+  user-select: none;
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+}
+
+.gift {
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
+  line-height: 1;
 }
