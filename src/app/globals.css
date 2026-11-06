@@ -59,47 +59,30 @@ input[type="number"]::-webkit-outer-spin-button {
 .xmas-card {
   position: relative;
   z-index: 1;
-  margin: 14px calc(var(--xw) * 0.138) 0;
+  margin: 14px calc(var(--xw) * 0.108) 0;
   background: #ffffff;
   border: 1px solid #e3e8f3;
   border-radius: 12px;
   box-shadow: 0 6px 22px rgba(32, 78, 140, 0.1);
 }
 
-/* Árvores e presentes laterais.
-   A camada cobre a página inteira; as colunas "grudam" na base da tela
-   enquanto o usuário rola e param sobre o chão de neve no fim da página. */
-.xmas-deco-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  pointer-events: none;
-}
-.xmas-deco-col {
-  position: sticky;
-  top: calc(100vh - var(--xw) * 0.798);
-  flex: none;
-}
-@supports (height: 100dvh) {
-  .xmas-deco-col {
-    top: calc(100dvh - var(--xw) * 0.798);
-  }
-}
+/* Árvores e presentes laterais — ficam fixas na base da tela */
 .xmas-deco {
-  display: block;
-  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 5;
   height: auto;
+  pointer-events: none;
   user-select: none;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 5%);
   mask-image: linear-gradient(to bottom, transparent 0, #000 5%);
 }
-.xmas-deco-col-left {
+.xmas-deco-left {
+  left: calc(50% - var(--xw) / 2);
   width: calc(var(--xw) * 0.1348);
 }
-.xmas-deco-col-right {
+.xmas-deco-right {
+  right: calc(50% - var(--xw) / 2);
   width: calc(var(--xw) * 0.1184);
 }
 
