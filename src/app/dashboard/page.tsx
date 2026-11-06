@@ -328,7 +328,6 @@ export default function DashboardPage() {
   const [purchaseOnPixGenerate, setPurchaseOnPixGenerate] = useState(false);
   const [configLoading, setConfigLoading] = useState(false);
   const [configMsg, setConfigMsg] = useState("");
-  const [cardEnabled, setCardEnabled] = useState(false);
 
   async function loadConfig() {
     try {
