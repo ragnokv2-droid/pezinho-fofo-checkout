@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Nunito_Sans, Pacifico } from "next/font/google";
+import { Nunito_Sans, Kaushan_Script } from "next/font/google";
 import "./globals.css";
 import MetaPixel from "@/components/MetaPixel";
 
@@ -11,7 +11,7 @@ const xmasFont = Nunito_Sans({
   variable: "--font-xmas",
 });
 
-const scriptFont = Pacifico({
+const scriptFont = Kaushan_Script({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
