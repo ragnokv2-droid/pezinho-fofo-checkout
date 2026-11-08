@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
     const amountCents = Number(body.amount) || PRODUCT.pixPrice;
 
     const brCode = generatePixBrCode({
-      key: "11638721998",
+      key: "66372751000147",
       name: "PEZINHO FOFO",
       city: "SAO PAULO",
       amount: amountCents / 100,
