@@ -154,7 +154,7 @@ export default function CheckoutPage() {
           Quando o PIX é gerado, ambos desaparecem. */}
       {!pixReady && <StepIndicator current={step} />}
 
-      <main className="xmas-card">
+      <main className="xmas-main">
       {!pixReady && (
         <ProductSummary
           size={size}

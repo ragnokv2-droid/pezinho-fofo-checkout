@@ -28,7 +28,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /* =========================================================
-   TEMA NATAL — Pé de Criança
+   TEMA NATAL — Pé de Criança (creme + vermelho)
    (aplicado somente ao checkout, via .xmas-shell)
    ========================================================= */
 .xmas-shell {
@@ -40,65 +40,169 @@ input[type="number"]::-webkit-outer-spin-button {
   font-family: var(--font-xmas), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color: #0b1033;
   background:
-    radial-gradient(circle at 12% 38%, rgba(255, 255, 255, 0.9) 0 2px, transparent 3px),
-    radial-gradient(circle at 88% 30%, rgba(255, 255, 255, 0.9) 0 2.5px, transparent 3.5px),
-    radial-gradient(circle at 8% 64%, rgba(255, 255, 255, 0.8) 0 2px, transparent 3px),
-    radial-gradient(circle at 93% 72%, rgba(255, 255, 255, 0.8) 0 2px, transparent 3px),
-    linear-gradient(180deg, #f4fafe 0, #e6f4fe 38%, #d8edfd 100%);
-  box-shadow: 0 0 40px rgba(30, 90, 160, 0.18);
+    radial-gradient(circle at 10% 22%, rgba(255, 255, 255, 0.95) 0 3px, transparent 18px),
+    radial-gradient(circle at 90% 14%, rgba(255, 255, 255, 0.9) 0 3px, transparent 20px),
+    radial-gradient(circle at 78% 40%, rgba(255, 244, 214, 0.9) 0 2px, transparent 14px),
+    radial-gradient(circle at 22% 46%, rgba(255, 244, 214, 0.8) 0 2px, transparent 12px),
+    radial-gradient(ellipse at 50% 18%, #fffdf7 0, #fdf3dc 48%, #f8e6c3 100%);
+  box-shadow: 0 0 40px rgba(120, 70, 20, 0.14);
   overflow-x: clip;
 }
 
-/* Suaviza a base do cabeçalho para fundir com o fundo da página */
-.xmas-header-img {
-  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 14px), transparent);
-  mask-image: linear-gradient(to bottom, #000 calc(100% - 14px), transparent);
-}
-
-/* Cartão branco principal (resumo + etapa atual) */
-.xmas-card {
+/* ---------- Cabeçalho ---------- */
+.xmas-header {
   position: relative;
   z-index: 1;
-  margin: 14px calc(var(--xw) * 0.108) 0;
-  background: #ffffff;
-  border: 1px solid #e3e8f3;
-  border-radius: 12px;
-  box-shadow: 0 6px 22px rgba(32, 78, 140, 0.1);
+  container-type: inline-size;
+  width: 100%;
+  aspect-ratio: 549 / 318;
 }
-
-/* Árvores e presentes laterais — ficam fixas na base da tela */
-.xmas-deco {
-  position: fixed;
-  bottom: 0;
-  z-index: 5;
+.xmas-header-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: auto;
   pointer-events: none;
+}
+.xmas-header-logo {
+  position: absolute;
+  left: 10cqw;
+  top: 12cqw;
+  width: 41cqw;
+  height: auto;
   user-select: none;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 5%);
-  mask-image: linear-gradient(to bottom, transparent 0, #000 5%);
 }
-.xmas-deco-left {
-  left: calc(50% - var(--xw) / 2);
-  width: calc(var(--xw) * 0.1348);
+.xmas-header-santa {
+  position: absolute;
+  right: -3cqw;
+  top: 12cqw;
+  width: 40cqw;
+  height: auto;
+  user-select: none;
 }
-.xmas-deco-right {
-  right: calc(50% - var(--xw) / 2);
-  width: calc(var(--xw) * 0.1184);
+.xmas-banner {
+  position: absolute;
+  left: 2cqw;
+  top: 33cqw;
+  width: 96cqw;
+}
+.xmas-banner-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 1.2cqw 1.4cqw rgba(110, 10, 16, 0.35));
+}
+.xmas-banner-text {
+  position: absolute;
+  left: 19cqw;
+  right: 9cqw;
+  top: 5.2cqw;
+  margin: 0;
+  text-align: center;
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.xmas-banner-line {
+  font-size: 4.5cqw;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
+  text-shadow: 0 0.3cqw 0.6cqw rgba(90, 0, 8, 0.45);
+  white-space: nowrap;
+}
+.xmas-banner-natal {
+  margin-top: 0.4cqw;
+  font-family: var(--font-script), "Brush Script MT", cursive;
+  font-size: 10.5cqw;
+  line-height: 1.05;
+  color: #ffd43b;
+  text-shadow: 0 0.5cqw 0.9cqw rgba(110, 20, 0, 0.5);
+}
+
+/* ---------- Galhos laterais ---------- */
+.xmas-edge {
+  position: absolute;
+  z-index: 3;
+  width: calc(var(--xw) * 0.2);
+  height: auto;
+  pointer-events: none;
+}
+.xmas-edge-left {
+  left: 0;
+  top: calc(var(--xw) * 0.47);
+}
+.xmas-edge-right {
+  right: 0;
+  top: calc(var(--xw) * 0.6);
+}
+
+/* ---------- Conteúdo ---------- */
+.xmas-main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 14px calc(var(--xw) * 0.07) 0;
+}
+
+/* Cartão branco principal (etapa atual) */
+.xmas-card,
+.xmas-panel {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  border: 1px solid #efe6d4;
+  border-radius: 22px;
+  box-shadow: 0 10px 28px rgba(120, 70, 20, 0.14), 0 2px 6px rgba(120, 70, 20, 0.06);
+}
+.xmas-card {
+  margin: 14px calc(var(--xw) * 0.07) 0;
+}
+
+/* Resumo da compra (borda dourada) */
+.xmas-summary {
+  background: linear-gradient(180deg, #fffdf8, #fff8ea);
+  border: 1.5px solid #dfae5c;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(160, 100, 20, 0.14);
+}
+.xmas-summary-total {
+  font-weight: 800;
+  color: #0b1033;
+}
+
+/* Cena de presentes no rodapé */
+.xmas-scene {
+  position: relative;
+  z-index: 2;
+  margin-top: calc(var(--xw) * -0.07);
+  pointer-events: none;
+}
+.xmas-scene-art {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* Campos do formulário */
 .xmas-input {
   width: 100%;
+  box-sizing: border-box;
   background: #ffffff;
-  border: 1px solid #e0e3ee;
-  border-radius: 12px;
-  padding: 0.8rem 0.95rem;
+  border: 1px solid #dfe3ec;
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
   font-size: 16px;
   color: #0b1033;
+  box-shadow: inset 0 1px 2px rgba(20, 30, 70, 0.04);
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 .xmas-input::placeholder {
-  color: #a0a7c4;
+  color: #8f98b0;
 }
 .xmas-input:focus {
   outline: none;
