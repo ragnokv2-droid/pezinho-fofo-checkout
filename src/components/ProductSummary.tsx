@@ -21,7 +21,7 @@ export default function ProductSummary({
   const total = totalAmount ?? PRODUCT.pixPrice + shippingPrice;
 
   return (
-    <div className="border-b border-[#e8ebf4]">
+    <div className="xmas-summary">
       <button
         type="button"
         onClick={() => setOpen(!open)}
@@ -36,7 +36,7 @@ export default function ProductSummary({
           </p>
         </div>
         <div className="flex items-center gap-1.5 flex-shrink-0">
-          <span className="text-lg sm:text-xl font-extrabold text-[#0b1033] whitespace-nowrap">
+          <span className="xmas-summary-total text-lg sm:text-xl whitespace-nowrap">
             {formatBRL(total)}
           </span>
           <span className="text-[#2a3f78] text-sm">{open ? "▲" : "▼"}</span>

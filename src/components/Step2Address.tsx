@@ -131,7 +131,7 @@ export default function Step2Address({
 
   if (phase === "shipping") {
     return (
-      <div className="px-4 pt-5 pb-6">
+      <div className="xmas-panel px-5 pt-6 pb-6">
         <div className="mb-5">
           <h2 className="text-xl font-extrabold text-[#0b1033] flex items-center gap-3">
             <span className="w-8 h-8 rounded-full bg-[#0b5cd8] text-white text-base flex items-center justify-center font-extrabold shrink-0">
@@ -273,7 +273,7 @@ export default function Step2Address({
   }
 
   return (
-    <div className="px-4 pt-5 pb-6">
+    <div className="xmas-panel px-5 pt-6 pb-6">
       <div className="mb-5">
         <h2 className="text-xl font-extrabold text-[#0b1033] flex items-center gap-3">
           <span className="w-8 h-8 rounded-full bg-[#0b5cd8] text-white text-base flex items-center justify-center font-extrabold shrink-0">

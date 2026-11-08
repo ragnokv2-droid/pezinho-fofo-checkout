@@ -16,7 +16,7 @@ export default function StepIndicator({ current }: { current: Step }) {
 
         {/* linha ativa */}
         <div
-          className="absolute top-[19px] left-[16%] h-[2px] bg-[#f5075f] z-0 transition-all duration-300"
+          className="absolute top-[19px] left-[16%] h-[2px] bg-[#e8111f] z-0 transition-all duration-300"
           style={{
             width: current === 1 ? "0%" : current === 2 ? "34%" : "68%",
           }}
@@ -35,7 +35,7 @@ export default function StepIndicator({ current }: { current: Step }) {
                 className={clsx(
                   "w-10 h-10 rounded-full flex items-center justify-center text-lg font-extrabold border-2 transition-colors",
                   (isCompleted || isActive)
-                    ? "bg-[#f5075f] border-[#f5075f] text-white shadow-[0_3px_10px_rgba(245,7,95,0.35)]"
+                    ? "bg-[#e8111f] border-[#e8111f] text-white shadow-[0_3px_10px_rgba(232,17,31,0.35)]"
                     : "bg-white border-[#dde1ee] text-[#5d6c9c] shadow-[0_2px_6px_rgba(60,90,150,0.08)]"
                 )}
               >
@@ -46,7 +46,7 @@ export default function StepIndicator({ current }: { current: Step }) {
                 className={clsx(
                   "text-[12.5px] mt-2 text-center leading-tight",
                   isActive
-                    ? "text-[#f5075f] font-bold"
+                    ? "text-[#e8111f] font-bold"
                     : "text-[#5d6c9c] font-medium"
                 )}
               >

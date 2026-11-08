@@ -298,7 +298,7 @@ export default function Step3Payment({
     const expired = secondsLeft <= 0;
 
     return (
-      <div className="px-4 py-8 min-h-[60vh]">
+      <div className="xmas-panel px-5 py-8 min-h-[60vh]">
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold text-[#0b1033]">
             Quase lá...
@@ -318,16 +318,16 @@ export default function Step3Payment({
             )}
           </p>
 
-          <div className="mt-4 inline-flex items-center gap-2 bg-[#f5075f]/10 text-[#f5075f] text-sm font-medium px-4 py-2 rounded-full">
+          <div className="mt-4 inline-flex items-center gap-2 bg-[#e8111f]/10 text-[#e8111f] text-sm font-medium px-4 py-2 rounded-full">
             {expired
               ? "Tempo esgotado"
               : "Aguardando pagamento"}
 
             {!expired && (
               <span className="flex gap-0.5">
-                <span className="w-1 h-1 rounded-full bg-[#f5075f] animate-pulse" />
-                <span className="w-1 h-1 rounded-full bg-[#f5075f] animate-pulse [animation-delay:150ms]" />
-                <span className="w-1 h-1 rounded-full bg-[#f5075f] animate-pulse [animation-delay:300ms]" />
+                <span className="w-1 h-1 rounded-full bg-[#e8111f] animate-pulse" />
+                <span className="w-1 h-1 rounded-full bg-[#e8111f] animate-pulse [animation-delay:150ms]" />
+                <span className="w-1 h-1 rounded-full bg-[#e8111f] animate-pulse [animation-delay:300ms]" />
               </span>
             )}
           </div>
@@ -401,7 +401,7 @@ export default function Step3Payment({
 
   // Tela inicial do pagamento.
   return (
-    <div className="px-4 pt-5 pb-6">
+    <div className="xmas-panel px-5 pt-6 pb-6">
       <div className="mb-5">
         <h2 className="text-xl font-extrabold text-[#0b1033] flex items-center gap-3">
           <span className="w-8 h-8 rounded-full bg-[#0b5cd8] text-white text-base flex items-center justify-center font-extrabold shrink-0">
@@ -445,7 +445,7 @@ export default function Step3Payment({
                 Pix
               </p>
 
-              <p className="text-xs text-[#f5075f] font-medium">
+              <p className="text-xs text-[#e8111f] font-medium">
                 5% de desconto
               </p>
             </div>
@@ -502,7 +502,7 @@ export default function Step3Payment({
               </span>
             </div>
 
-            <span className="text-[10px] font-bold bg-[#f5075f]/10 text-[#f5075f] px-2 py-0.5 rounded-full">
+            <span className="text-[10px] font-bold bg-[#e8111f]/10 text-[#e8111f] px-2 py-0.5 rounded-full">
               5% de desconto
             </span>
           </div>
