@@ -28,7 +28,7 @@ export default function ProductSummary({
         className="w-full px-4 py-3.5 flex items-center justify-between gap-3"
       >
         <div className="text-left min-w-0">
-          <p className="text-[15px] font-extrabold text-[#0b1033] uppercase leading-tight">
+          <p className="text-[15px] font-extrabold text-[#12306f] uppercase leading-tight">
             Resumo (1)
           </p>
           <p className="text-[12.5px] text-[#6b7aa3] mt-0.5 leading-snug">
@@ -58,7 +58,7 @@ export default function ProductSummary({
             </div>
 
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-bold text-[#0b1033] leading-tight">
+              <p className="text-sm font-bold text-[#12306f] leading-tight">
                 {PRODUCT.name}
               </p>
               {size && <p className="text-xs font-semibold text-blue-900 mt-1">Tamanho: {size}</p>}
@@ -68,7 +68,7 @@ export default function ProductSummary({
                     {formatBRL(PRODUCT.originalPrice)}
                   </span>
                 )}
-                <span className="text-sm font-bold text-[#0b1033]">
+                <span className="text-sm font-bold text-[#12306f]">
                   {formatBRL(PRODUCT.cardPrice)}
                 </span>
                 <span className="text-xs font-bold text-teal-700">
@@ -95,7 +95,7 @@ export default function ProductSummary({
             </div>
           )}
 
-          <div className="mt-2 flex justify-between text-sm font-bold text-[#0b1033]">
+          <div className="mt-2 flex justify-between text-sm font-bold text-[#12306f]">
             <span>Total</span>
             <span className="text-teal-700">{formatBRL(total)}</span>
           </div>

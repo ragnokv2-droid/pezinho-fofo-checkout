@@ -55,15 +55,15 @@ export default function Step1Identification({
   return (
     <div className="xmas-panel px-5 pt-6 pb-6">
       <div className="mb-5">
-        <h2 className="text-xl font-extrabold text-[#0b1033] flex items-center gap-3">
-          <span className="w-8 h-8 rounded-full bg-[#0b5cd8] text-white text-base flex items-center justify-center font-extrabold shrink-0">
+        <h2 className="text-xl font-extrabold text-[#12306f] flex items-center gap-3">
+          <span className="w-8 h-8 rounded-full bg-[#1f6fe0] text-white text-base flex items-center justify-center font-extrabold shrink-0">
             1
           </span>
 
           Identificação
         </h2>
 
-        <p className="text-[15px] text-[#475683] mt-3 leading-relaxed">
+        <p className="text-[13.5px] text-[#475683] mt-3 leading-snug">
           Utilizaremos seu e-mail para identificar seu perfil,
           histórico de compra, notificação de pedidos e carrinho
           de compras.
@@ -72,7 +72,7 @@ export default function Step1Identification({
 
       <div className="space-y-4">
         <div>
-          <label className="block text-[15px] font-bold text-[#0b1033] mb-1.5">
+          <label className="block text-sm font-bold text-[#12306f] mb-1.5">
             Nome completo
           </label>
 
@@ -86,7 +86,7 @@ export default function Step1Identification({
         </div>
 
         <div>
-          <label className="block text-[15px] font-bold text-[#0b1033] mb-1.5">
+          <label className="block text-sm font-bold text-[#12306f] mb-1.5">
             E-mail
           </label>
 
@@ -100,7 +100,7 @@ export default function Step1Identification({
         </div>
 
         <div>
-          <label className="block text-[15px] font-bold text-[#0b1033] mb-1.5">
+          <label className="block text-sm font-bold text-[#12306f] mb-1.5">
             CPF
           </label>
 
@@ -117,7 +117,7 @@ export default function Step1Identification({
         </div>
 
         <div>
-          <label className="block text-[15px] font-bold text-[#0b1033] mb-1.5">
+          <label className="block text-sm font-bold text-[#12306f] mb-1.5">
             Celular / WhatsApp
           </label>
 
@@ -147,7 +147,7 @@ export default function Step1Identification({
         type="button"
         disabled={!valid}
         onClick={onNext}
-        className="mt-8 w-full bg-[#0b5cd8] hover:bg-[#0948b0] disabled:bg-gray-300 disabled:text-[#5d6c9c] text-white font-semibold py-3.5 rounded-xl text-sm transition-colors"
+        className="mt-8 w-full bg-[#2f86e8] hover:bg-[#1f6fd0] disabled:bg-[#b4cdea] disabled:text-[#12306f] text-white font-semibold py-3.5 rounded-xl text-sm transition-colors"
       >
         Ir para Entrega
       </button>

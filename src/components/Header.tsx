@@ -1,34 +1,32 @@
-import { XmasDefs, Snowflake, Sparkle, Snowman } from "@/components/XmasArt";
+import { XmasDefs, Snowflake, Sparkle } from "@/components/XmasArt";
+import { CuteTree, GiftBox, HeartOutline } from "@/components/StitchArt";
 
 /**
- * Cabeçalho de inverno: céu com flocos, logo Pé de Criança, boneco de neve
- * e faixa creme "Presenteie quem você ama neste Natal!".
+ * Cabeçalho natalino Stitch: céu com neve, logo Pé de Criança,
+ * selo de pagamento seguro, Stitch de gorro, faixa azul e árvore/presentes.
  * Dimensionado em cqw (largura do próprio cabeçalho).
  */
 export default function Header() {
   return (
     <header className="xmas-header">
-      {/* Flocos e brilhos (coordenadas de um canvas 282 x 190) */}
-      <svg aria-hidden="true" viewBox="0 0 282 190" className="xmas-header-flakes">
+      {/* Flocos e brilhos (canvas 282 x 203) */}
+      <svg aria-hidden="true" viewBox="0 0 282 203" className="xmas-header-flakes">
         <defs>
           <XmasDefs />
         </defs>
-        <Snowflake x={25} y={17} r={15} />
-        <Snowflake x={14} y={56} r={9} o={0.95} />
-        <Snowflake x={130} y={16} r={8} />
-        <Snowflake x={206} y={15} r={6} o={0.9} />
-        <Snowflake x={271} y={15} r={9} o={0.9} />
-        <Snowflake x={13} y={96} r={5} o={0.8} />
-        <Snowflake x={15} y={186} r={9} o={0.9} />
-        <Snowflake x={266} y={182} r={10} o={0.9} />
-        <Sparkle x={184} y={37} s={5} />
-        <Sparkle x={185} y={61} s={5} />
-        <Sparkle x={160} y={60} s={4} />
-        <Sparkle x={77} y={10} s={3} o={0.8} />
-        <Sparkle x={236} y={30} s={3} o={0.8} />
-        <Sparkle x={100} y={34} s={2.5} o={0.7} />
-        <Sparkle x={52} y={30} s={2.5} o={0.7} />
-        <Sparkle x={250} y={52} s={2.5} o={0.7} />
+        <Snowflake x={14} y={22} r={9} o={0.9} />
+        <Snowflake x={36} y={118} r={7} o={0.7} />
+        <Snowflake x={140} y={14} r={7} o={0.85} />
+        <Snowflake x={176} y={34} r={5} o={0.7} />
+        <Snowflake x={268} y={66} r={9} o={0.9} />
+        <Snowflake x={262} y={150} r={6} o={0.7} />
+        <Snowflake x={102} y={98} r={5} o={0.6} />
+        <Sparkle x={70} y={12} s={3} o={0.8} />
+        <Sparkle x={120} y={56} s={3} o={0.8} />
+        <Sparkle x={236} y={24} s={3.5} o={0.85} />
+        <Sparkle x={150} y={86} s={2.5} o={0.7} />
+        <Sparkle x={20} y={80} s={2.5} o={0.7} />
+        <Sparkle x={250} y={110} s={2.5} o={0.7} />
       </svg>
 
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -41,33 +39,64 @@ export default function Header() {
         draggable={false}
       />
 
-      {/* Faixa creme */}
-      <div className="xmas-banner">
-        <svg viewBox="0 0 234 75" className="xmas-banner-art" aria-hidden="true">
-          <rect x={1} y={1} width={232} height={73} rx={14} fill="#fff6ee" />
-          <rect
-            x={7}
-            y={6}
-            width={220}
-            height={63}
-            rx={10}
+      {/* Selo de pagamento seguro */}
+      <div className="xmas-secure">
+        <svg viewBox="0 0 24 24" aria-hidden="true" className="xmas-secure-icon">
+          <path
+            d="M7.5 10.5V8a4.5 4.5 0 0 1 9 0v2.5"
             fill="none"
-            stroke="#ec6a5a"
-            strokeWidth={0.9}
-            strokeDasharray="3.2 2.4"
+            stroke="#12306f"
+            strokeWidth={2.4}
             strokeLinecap="round"
           />
-          {/* corações */}
-          <path
-            transform="translate(40 49)"
-            d="M0 5 C -9 -2 -6 -9 0 -5 C 6 -9 9 -2 0 5 Z"
-            fill="#e8141f"
+          <rect x={4.5} y={10.5} width={15} height={11} rx={2.6} fill="#12306f" />
+          <circle cx={12} cy={15.2} r={1.7} fill="#fff" />
+          <rect x={11.2} y={15.8} width={1.6} height={3.2} rx={0.8} fill="#fff" />
+        </svg>
+        <span className="xmas-secure-text">
+          Pagamento
+          <br />
+          100% Seguro
+        </span>
+      </div>
+
+      {/* Stitch de gorro (atrás da faixa, patinhas na borda) */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/stitch-natal.webp"
+        alt=""
+        aria-hidden="true"
+        width={570}
+        height={369}
+        className="xmas-header-stitch"
+        draggable={false}
+      />
+
+      {/* Faixa azul */}
+      <div className="xmas-banner">
+        <svg viewBox="0 0 360 94" className="xmas-banner-art" aria-hidden="true">
+          <defs>
+            <linearGradient id="sa-banner" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#2450aa" />
+              <stop offset="1" stopColor="#12306f" />
+            </linearGradient>
+          </defs>
+          <rect x={2} y={2} width={356} height={90} rx={22} fill="url(#sa-banner)" stroke="#7dbbf5" strokeWidth={3} />
+          <rect
+            x={9}
+            y={9}
+            width={342}
+            height={76}
+            rx={16}
+            fill="none"
+            stroke="rgba(255,255,255,0.35)"
+            strokeWidth={1.2}
+            strokeDasharray="5 4"
           />
-          <path
-            transform="translate(196 49)"
-            d="M0 5 C -9 -2 -6 -9 0 -5 C 6 -9 9 -2 0 5 Z"
-            fill="#e8141f"
-          />
+          <HeartOutline x={32} y={64} s={1.1} />
+          <HeartOutline x={328} y={64} s={1.1} />
+          <HeartOutline x={44} y={40} s={0.6} />
+          <HeartOutline x={316} y={40} s={0.6} />
         </svg>
         <p className="xmas-banner-text">
           <span className="xmas-banner-line">Presenteie quem você ama neste</span>
@@ -75,12 +104,17 @@ export default function Header() {
         </p>
       </div>
 
-      {/* Boneco de neve (à frente da faixa) */}
-      <svg aria-hidden="true" viewBox="0 0 120 150" className="xmas-header-snowman">
-        <defs>
-          <XmasDefs />
-        </defs>
-        <Snowman />
+      {/* Árvore à esquerda */}
+      <svg aria-hidden="true" viewBox="0 0 60 100" className="xmas-header-tree">
+        <CuteTree />
+      </svg>
+
+      {/* Presentes à direita */}
+      <svg aria-hidden="true" viewBox="0 0 70 70" className="xmas-header-gifts">
+        <GiftBox x={26} y={22} w={34} h={38} body="#ff7fb0" lid="#ff4f93" ribbon="#4aa3f2" />
+        <GiftBox x={4} y={34} w={28} h={30} body="#3f8fe6" lid="#2a6bd0" ribbon="#ff4f93" />
+        <Sparkle x={62} y={14} s={3} />
+        <Sparkle x={8} y={22} s={2.4} o={0.8} />
       </svg>
     </header>
   );

@@ -300,11 +300,11 @@ export default function Step3Payment({
     return (
       <div className="xmas-panel px-5 py-8 min-h-[60vh]">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-[#0b1033]">
+          <h2 className="text-2xl font-bold text-[#12306f]">
             Quase lá...
           </h2>
 
-          <p className="text-[15px] text-[#475683] mt-3 leading-relaxed">
+          <p className="text-[13.5px] text-[#475683] mt-3 leading-snug">
             {expired ? (
               <>O tempo para pagar este Pix esgotou.</>
             ) : (
@@ -338,7 +338,7 @@ export default function Step3Payment({
             Valor do Pix:
           </p>
 
-          <p className="text-xl font-bold text-[#0b1033] mb-4">
+          <p className="text-xl font-bold text-[#12306f] mb-4">
             {formatBRL(totalAmount)}
           </p>
 
@@ -346,7 +346,7 @@ export default function Step3Payment({
             type="button"
             onClick={copyCode}
             disabled={expired}
-            className="w-full flex items-center justify-center gap-2 bg-[#0b5cd8] hover:bg-[#0948b0] disabled:bg-gray-300 text-white font-semibold py-3.5 rounded-xl text-sm transition-colors"
+            className="w-full flex items-center justify-center gap-2 bg-[#2f86e8] hover:bg-[#1f6fd0] disabled:bg-[#a9c9ee] text-white font-semibold py-3.5 rounded-xl text-sm transition-colors"
           >
             {copied ? (
               <>
@@ -403,8 +403,8 @@ export default function Step3Payment({
   return (
     <div className="xmas-panel px-5 pt-6 pb-6">
       <div className="mb-5">
-        <h2 className="text-xl font-extrabold text-[#0b1033] flex items-center gap-3">
-          <span className="w-8 h-8 rounded-full bg-[#0b5cd8] text-white text-base flex items-center justify-center font-extrabold shrink-0">
+        <h2 className="text-xl font-extrabold text-[#12306f] flex items-center gap-3">
+          <span className="w-8 h-8 rounded-full bg-[#1f6fe0] text-white text-base flex items-center justify-center font-extrabold shrink-0">
             3
           </span>
 
@@ -441,7 +441,7 @@ export default function Step3Payment({
             </span>
 
             <div className="flex-1">
-              <p className="text-sm font-semibold text-[#0b1033]">
+              <p className="text-sm font-semibold text-[#12306f]">
                 Pix
               </p>
 
@@ -477,7 +477,7 @@ export default function Step3Payment({
             </span>
 
             <div className="flex-1">
-              <p className="text-sm font-semibold text-[#0b1033]">
+              <p className="text-sm font-semibold text-[#12306f]">
                 Cartão de crédito
               </p>
             </div>
@@ -497,7 +497,7 @@ export default function Step3Payment({
                 <span className="w-2.5 h-2.5 rounded-full bg-[#0b5cd8]" />
               </span>
 
-              <span className="font-semibold text-[#0b1033]">
+              <span className="font-semibold text-[#12306f]">
                 Pix
               </span>
             </div>
@@ -517,9 +517,9 @@ export default function Step3Payment({
         )}
 
         {!cardEnabled && (
-          <p className="text-sm text-[#0b1033] mb-4">
+          <p className="text-sm text-[#12306f] mb-4">
             Valor no Pix:{" "}
-            <strong className="text-[#0b1033]">
+            <strong className="text-[#12306f]">
               {formatBRL(totalAmount)}
             </strong>
           </p>
@@ -530,7 +530,7 @@ export default function Step3Payment({
             type="button"
             onClick={generatePix}
             disabled={loading}
-            className="w-full bg-[#0b5cd8] hover:bg-[#0948b0] disabled:bg-gray-300 disabled:text-[#5d6c9c] text-white font-bold py-3.5 rounded-xl text-sm tracking-wide transition-colors flex items-center justify-center gap-2"
+            className="w-full bg-[#2f86e8] hover:bg-[#1f6fd0] disabled:bg-[#b4cdea] disabled:text-[#12306f] text-white font-bold py-3.5 rounded-xl text-sm tracking-wide transition-colors flex items-center justify-center gap-2"
           >
             {loading ? (
               <>
@@ -546,7 +546,7 @@ export default function Step3Payment({
             type="button"
             onClick={payWithCard}
             disabled={cardLoading}
-            className="w-full bg-[#0b5cd8] hover:bg-[#0948b0] disabled:bg-gray-300 text-white font-bold py-3.5 rounded-xl text-sm"
+            className="w-full bg-[#2f86e8] hover:bg-[#1f6fd0] disabled:bg-[#a9c9ee] text-white font-bold py-3.5 rounded-xl text-sm"
           >
             {cardLoading
               ? "Redirecionando..."

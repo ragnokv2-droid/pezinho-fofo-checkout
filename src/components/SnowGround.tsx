@@ -1,77 +1,75 @@
-import { XmasDefs, SnowTree, Fence, KraftGift, Sparkle } from "@/components/XmasArt";
+import { XmasDefs, Snowflake, Sparkle } from "@/components/XmasArt";
+import { GiftBox, MouseIcon } from "@/components/StitchArt";
 
 /**
- * Camada decorativa do tema:
- * - ChristmasDecor: pinheiros nevados nas laterais (não interferem nos cliques)
- * - SnowGround: cerca, presentes e neve no fim da página
+ * Camada decorativa do tema Natal Stitch:
+ * - ChristmasDecor: brilhos de neve espalhados (não interferem nos cliques)
+ * - SnowGround: presentes rosa e azuis, neve e silhueta Mickey no fim da página
  */
 export function ChristmasDecor() {
   return (
-    <>
-      {/* Pinheiro direito, na altura das etapas/resumo */}
-      <svg aria-hidden="true" viewBox="0 0 100 200" className="xmas-edge xmas-edge-right">
-        <defs>
-          <XmasDefs />
-        </defs>
-        <SnowTree tint={-8} />
-      </svg>
-    </>
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 218 593"
+      preserveAspectRatio="xMidYMid slice"
+      className="xmas-sparkles"
+    >
+      <defs>
+        <XmasDefs />
+      </defs>
+      <Snowflake x={206} y={180} r={5} o={0.8} />
+      <Snowflake x={10} y={262} r={4} o={0.7} />
+      <Snowflake x={210} y={330} r={4} o={0.7} />
+      <Snowflake x={8} y={420} r={5} o={0.75} />
+      <Snowflake x={212} y={470} r={4} o={0.7} />
+      <Sparkle x={14} y={205} s={2.5} o={0.8} />
+      <Sparkle x={207} y={250} s={2.5} o={0.8} />
+      <Sparkle x={9} y={350} s={2} o={0.7} />
+      <Sparkle x={208} y={400} s={2} o={0.7} />
+    </svg>
   );
 }
 
 export function SnowGround() {
   return (
     <div aria-hidden="true" className="xmas-scene">
-      {/* Pinheiro esquerdo, parcialmente atrás do cartão */}
-      <svg viewBox="0 0 100 200" className="xmas-scene-tree">
-        <defs>
-          <XmasDefs />
-        </defs>
-        <SnowTree />
-      </svg>
-
-      <svg viewBox="0 -40 282 140" className="xmas-scene-art">
+      <svg viewBox="0 0 218 100" className="xmas-scene-art">
         <defs>
           <XmasDefs />
         </defs>
 
         {/* morros de neve ao fundo */}
         <path
-          d="M0 62 C 40 52 90 60 130 66 C 160 52 215 50 250 60 C 266 60 276 56 282 56 L282 100 L0 100 Z"
-          fill="#e4eefb"
-          opacity={0.85}
-        />
-        <path
-          d="M110 78 C 130 62 175 62 200 72 L 200 100 L 110 100 Z"
-          fill="#fff"
+          d="M0 52 C 30 42 70 50 110 56 C 140 44 185 42 218 50 L218 100 L0 100 Z"
+          fill="#dcebfb"
           opacity={0.9}
         />
 
-        {/* cerca à esquerda */}
-        <g transform="translate(0 15)">
-          <Fence />
-        </g>
-        {/* cerca à direita (aparece só um pedaço) */}
-        <g transform="translate(272 -12) scale(0.9)">
-          <Fence />
-        </g>
+        {/* silhueta Mickey na neve */}
+        <MouseIcon x={109} y={60} r={9} fill="#7cc4f5" />
 
-        {/* presentes */}
-        <KraftGift x={236} y={-8} w={56} h={64} bow={0.6} />
-        <KraftGift x={179} y={33} w={93} h={53} bow={1} />
+        {/* presentes da esquerda */}
+        <GiftBox x={44} y={26} w={28} h={46} body="#4a9bf0" lid="#2f7be0" ribbon="#ff4f93" />
+        <GiftBox x={4} y={36} w={52} h={50} body="#ff7fb0" lid="#ff4f93" ribbon="#4aa3f2" />
+        <Snowflake x={30} y={64} r={7} o={0.95} />
+
+        {/* presentes da direita */}
+        <GiftBox x={158} y={32} w={56} h={54} body="#3f8fe6" lid="#2a6bd0" ribbon="#ff4f93" />
+        <GiftBox x={132} y={60} w={28} h={26} body="#ff8fbb" lid="#ff4f93" ribbon="#4aa3f2" />
+        <Snowflake x={186} y={62} r={7} o={0.95} />
 
         {/* neve da frente */}
         <path
-          d="M0 82 C 40 70 90 74 130 86 C 170 94 215 88 282 80 L282 100 L0 100 Z"
+          d="M0 80 C 40 72 90 76 130 84 C 170 90 195 84 218 78 L218 100 L0 100 Z"
           fill="url(#xa-snow)"
         />
         <path
-          d="M0 92 C 60 84 120 96 180 94 C 220 92 250 88 282 90 L282 100 L0 100 Z"
+          d="M0 92 C 50 86 110 95 160 93 C 190 92 205 89 218 90 L218 100 L0 100 Z"
           fill="#fff"
         />
-        <Sparkle x={92} y={52} s={2.5} o={0.8} />
-        <Sparkle x={160} y={72} s={2} o={0.7} />
-        <Sparkle x={120} y={40} s={2} o={0.7} />
+        <Sparkle x={86} y={50} s={2.5} o={0.8} />
+        <Sparkle x={132} y={46} s={2} o={0.7} />
+        <Sparkle x={120} y={74} s={2} o={0.7} />
       </svg>
     </div>
   );
