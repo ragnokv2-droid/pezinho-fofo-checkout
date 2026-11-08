@@ -28,24 +28,29 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /* =========================================================
-   TEMA NATAL — Pé de Criança (inverno azul)
+   TEMA NATAL STITCH — Pé de Criança (inverno azul e rosa)
    (aplicado somente ao checkout, via .xmas-shell)
    ========================================================= */
 .xmas-shell {
   --xw: min(100vw, 549px);
+  --pink: #ff2a7a;
+  --blue: #1f6fe0;
+  --navy: #12306f;
   position: relative;
   max-width: 549px;
   margin: 0 auto;
   min-height: 100vh;
   font-family: var(--font-xmas), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  color: #0b1033;
+  color: var(--navy);
   background:
-    radial-gradient(ellipse 55% 16% at 38% 11%, rgba(255, 255, 255, 0.85), transparent 70%),
-    radial-gradient(ellipse 40% 8% at 20% 20%, rgba(255, 255, 255, 0.55), transparent 70%),
-    radial-gradient(circle at 12% 70%, rgba(255, 255, 255, 0.5) 0 2px, transparent 3px),
-    radial-gradient(circle at 90% 55%, rgba(255, 255, 255, 0.6) 0 2px, transparent 3px),
-    linear-gradient(180deg, #4ea3ee 0, #7bbcf3 12%, #bfdcf7 30%, #e3f0fc 48%, #dcebfb 70%, #bcd8f2 100%);
-  box-shadow: 0 0 40px rgba(30, 90, 160, 0.18);
+    radial-gradient(ellipse 50% 10% at 30% 6%, rgba(255, 255, 255, 0.8), transparent 70%),
+    radial-gradient(ellipse 40% 8% at 85% 30%, rgba(255, 255, 255, 0.55), transparent 70%),
+    radial-gradient(circle at 8% 38%, rgba(255, 255, 255, 0.85) 0 2px, transparent 3px),
+    radial-gradient(circle at 93% 46%, rgba(255, 255, 255, 0.9) 0 2.5px, transparent 3.5px),
+    radial-gradient(circle at 15% 62%, rgba(255, 255, 255, 0.8) 0 2px, transparent 3px),
+    radial-gradient(circle at 88% 74%, rgba(255, 255, 255, 0.8) 0 2px, transparent 3px),
+    linear-gradient(180deg, #8ccaf6 0, #b4dcf9 14%, #d5ebfc 34%, #e4f2fd 60%, #d3e8fa 100%);
+  box-shadow: 0 0 40px rgba(30, 90, 160, 0.14);
   overflow-x: clip;
 }
 
@@ -55,7 +60,7 @@ input[type="number"]::-webkit-outer-spin-button {
   z-index: 1;
   container-type: inline-size;
   width: 100%;
-  aspect-ratio: 282 / 186;
+  aspect-ratio: 100 / 72;
 }
 .xmas-header-flakes {
   position: absolute;
@@ -66,27 +71,50 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .xmas-header-logo {
   position: absolute;
-  left: 12.5cqw;
-  top: 12.6cqw;
-  width: 40.5cqw;
+  left: -0.5cqw;
+  top: 3.3cqw;
+  width: 48.7cqw;
   height: auto;
   user-select: none;
   filter: drop-shadow(0 0 1.2cqw rgba(255, 255, 255, 0.8));
 }
-.xmas-header-snowman {
+.xmas-secure {
   position: absolute;
-  left: 58.9cqw;
-  top: 7cqw;
-  width: 41.1cqw;
+  right: 4cqw;
+  top: 5.5cqw;
+  display: flex;
+  align-items: center;
+  gap: 1.6cqw;
+  color: var(--navy);
+}
+.xmas-secure-icon {
+  width: 6cqw;
+  height: 6cqw;
+  flex-shrink: 0;
+}
+.xmas-secure-text {
+  font-size: 3.2cqw;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.xmas-header-stitch {
+  position: absolute;
+  left: 49cqw;
+  top: 19cqw;
+  width: 50cqw;
   height: auto;
   pointer-events: none;
+  user-select: none;
 }
 .xmas-banner {
   position: absolute;
-  left: 6.7cqw;
-  top: 37.2cqw;
-  width: 83cqw;
-  filter: drop-shadow(0 1.1cqw 1.6cqw rgba(20, 60, 130, 0.28));
+  left: 10cqw;
+  top: 47cqw;
+  width: 82.5cqw;
+  transform: rotate(-2.5deg);
+  transform-origin: 50% 50%;
+  filter: drop-shadow(0 1.1cqw 1.6cqw rgba(20, 60, 130, 0.3));
 }
 .xmas-banner-art {
   display: block;
@@ -97,41 +125,54 @@ input[type="number"]::-webkit-outer-spin-button {
   position: absolute;
   inset: 0;
   margin: 0;
-  padding-top: 5.4cqw;
   text-align: center;
   line-height: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 .xmas-banner-line {
-  font-size: 4.35cqw;
+  font-size: 3.95cqw;
   font-weight: 800;
-  color: #0b0b12;
-  letter-spacing: -0.012em;
+  color: #fff;
+  letter-spacing: -0.01em;
   white-space: nowrap;
 }
 .xmas-banner-natal {
-  margin-top: 0.4cqw;
+  margin-top: 0.6cqw;
   font-family: var(--font-script), "Brush Script MT", cursive;
-  font-size: 14.5cqw;
-  line-height: 1.1;
-  color: #e8141f;
-  letter-spacing: -0.01em;
+  font-size: 11.5cqw;
+  line-height: 1;
+  color: #ffd21f;
+  text-shadow: 0.35cqw 0.35cqw 0 #0a1f55, 0 0.6cqw 1.2cqw rgba(0, 0, 0, 0.25);
   transform: rotate(-3deg);
 }
-
-/* ---------- Pinheiros laterais ---------- */
-.xmas-edge {
+.xmas-header-tree {
   position: absolute;
-  z-index: 0;
-  pointer-events: none;
+  left: -1.5cqw;
+  top: 33cqw;
+  width: 23cqw;
   height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 1cqw 1.2cqw rgba(20, 60, 130, 0.25));
 }
-.xmas-edge-right {
-  right: -9cqw;
-  top: calc(var(--xw) * 0.8);
-  width: calc(var(--xw) * 0.3);
+.xmas-header-gifts {
+  position: absolute;
+  right: -4cqw;
+  top: 43cqw;
+  width: 20cqw;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 1cqw 1.2cqw rgba(20, 60, 130, 0.25));
+}
+.xmas-sparkles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ---------- Conteúdo ---------- */
@@ -140,7 +181,7 @@ input[type="number"]::-webkit-outer-spin-button {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   margin: 8px calc(var(--xw) * 0.06) 0;
 }
 
@@ -150,9 +191,9 @@ input[type="number"]::-webkit-outer-spin-button {
   position: relative;
   z-index: 1;
   background: #ffffff;
-  border: 1px solid #e6ecf6;
-  border-radius: 16px 16px 14px 14px;
-  box-shadow: 0 6px 22px rgba(25, 70, 140, 0.16);
+  border: 1px solid #cfe1f6;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(25, 90, 170, 0.14);
 }
 .xmas-card {
   margin: 14px calc(var(--xw) * 0.06) 0;
@@ -161,20 +202,20 @@ input[type="number"]::-webkit-outer-spin-button {
 /* Resumo da compra */
 .xmas-summary {
   background: #ffffff;
-  border: 1px solid #c6cedd;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(25, 70, 140, 0.14);
+  border: 1px solid #b9d3f2;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(25, 90, 170, 0.12);
 }
 .xmas-summary-total {
   font-weight: 800;
-  color: #0b1033;
+  color: var(--navy);
 }
 
-/* Cena do rodapé: cerca, presentes e neve */
+/* Cena do rodapé: presentes, neve e Mickey */
 .xmas-scene {
   position: relative;
   z-index: 2;
-  margin-top: calc(var(--xw) * -0.12);
+  margin-top: calc(var(--xw) * -0.04);
   pointer-events: none;
 }
 .xmas-scene-art {
@@ -184,34 +225,26 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 100%;
   height: auto;
 }
-.xmas-scene-tree {
-  position: absolute;
-  z-index: 0;
-  left: calc(var(--xw) * -0.1);
-  bottom: calc(var(--xw) * 0.12);
-  width: calc(var(--xw) * 0.3);
-  height: auto;
-}
 
 /* Campos do formulário */
 .xmas-input {
   width: 100%;
   box-sizing: border-box;
   background: #ffffff;
-  border: 1px solid #dde2ee;
-  border-radius: 14px;
-  padding: 0.85rem 1rem;
+  border: 1px solid #c7dbf3;
+  border-radius: 12px;
+  padding: 0.68rem 0.95rem;
   font-size: 16px;
-  color: #0b1033;
+  color: var(--navy);
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 .xmas-input::placeholder {
-  color: #8d96b0;
+  color: #7d8db0;
 }
 .xmas-input:focus {
   outline: none;
-  border-color: #0b5cd8;
-  box-shadow: 0 0 0 3px rgba(11, 92, 216, 0.18);
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(31, 111, 224, 0.18);
 }
 
 @media (prefers-reduced-motion: reduce) {
