@@ -122,7 +122,7 @@ export default function Step1Identification({
           </label>
 
           <div className="flex gap-2">
-            <div className="flex items-center px-3 border border-[#e0e3ee] rounded-xl bg-[#f4f7fd] text-sm text-[#5d6c9c] font-semibold">
+            <div className="flex items-center px-3 border border-[#e0e3ee] rounded-xl bg-[#eef0f4] text-sm text-[#2d3858] font-semibold">
               +55
             </div>
 

@@ -9,10 +9,10 @@ const steps = [
 
 export default function StepIndicator({ current }: { current: Step }) {
   return (
-    <div className="relative z-[1] pt-2 pb-1" style={{ margin: "0 calc(var(--xw) * 0.15)" }}>
+    <div className="relative z-[1] pt-1 pb-1" style={{ margin: "0 calc(var(--xw) * 0.09)" }}>
       <div className="flex items-start justify-between relative max-w-md mx-auto">
         {/* linha de fundo */}
-        <div className="absolute top-[19px] left-[16%] right-[16%] h-[2px] bg-[#dee1ed] z-0" />
+        <div className="absolute top-[19px] left-[16%] right-[16%] h-[2px] bg-[#c9d8ee] z-0" />
 
         {/* linha ativa */}
         <div

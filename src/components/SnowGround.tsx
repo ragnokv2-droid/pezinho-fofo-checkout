@@ -1,43 +1,19 @@
-import { XmasDefs, PineBranch, Ornament, Bulb, Gift } from "@/components/XmasArt";
+import { XmasDefs, SnowTree, Fence, KraftGift, Sparkle } from "@/components/XmasArt";
 
 /**
- * Camada decorativa do tema natalino:
- * - ChristmasDecor: galhos nas laterais (não interferem nos cliques)
- * - SnowGround: cena de presentes + neve no fim da página
+ * Camada decorativa do tema:
+ * - ChristmasDecor: pinheiros nevados nas laterais (não interferem nos cliques)
+ * - SnowGround: cerca, presentes e neve no fim da página
  */
 export function ChristmasDecor() {
   return (
     <>
-      {/* Galho esquerdo (altura da faixa vermelha) */}
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 120 150"
-        className="xmas-edge xmas-edge-left"
-      >
+      {/* Pinheiro direito, na altura das etapas/resumo */}
+      <svg aria-hidden="true" viewBox="0 0 100 200" className="xmas-edge xmas-edge-right">
         <defs>
           <XmasDefs />
         </defs>
-        <g transform="translate(-10 70) rotate(-18)">
-          <PineBranch length={105} seed={7} />
-        </g>
-        <Bulb x={24} y={46} glow={11} />
-        <Ornament x={14} y={104} r={8} />
-      </svg>
-
-      {/* Galho direito (altura das etapas) */}
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 120 150"
-        className="xmas-edge xmas-edge-right"
-      >
-        <defs>
-          <XmasDefs />
-        </defs>
-        <g transform="translate(130 70) rotate(198)">
-          <PineBranch length={105} seed={3} />
-        </g>
-        <Bulb x={98} y={50} glow={11} />
-        <Ornament x={108} y={106} r={8} />
+        <SnowTree tint={-8} />
       </svg>
     </>
   );
@@ -46,65 +22,56 @@ export function ChristmasDecor() {
 export function SnowGround() {
   return (
     <div aria-hidden="true" className="xmas-scene">
-      <svg viewBox="0 0 549 300" className="xmas-scene-art">
+      {/* Pinheiro esquerdo, parcialmente atrás do cartão */}
+      <svg viewBox="0 0 100 200" className="xmas-scene-tree">
         <defs>
           <XmasDefs />
-          <linearGradient id="xs-snow" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#ffffff" />
-            <stop offset="1" stopColor="#e9eef8" />
-          </linearGradient>
+        </defs>
+        <SnowTree />
+      </svg>
+
+      <svg viewBox="0 -40 282 140" className="xmas-scene-art">
+        <defs>
+          <XmasDefs />
         </defs>
 
-        {/* galhos laterais */}
-        <g transform="translate(-10 150) rotate(-24)">
-          <PineBranch length={130} seed={11} />
-        </g>
-        <g transform="translate(559 150) rotate(204)">
-          <PineBranch length={130} seed={13} />
-        </g>
-        <g transform="translate(-10 262) rotate(-8)">
-          <PineBranch length={110} seed={17} />
-        </g>
-        <g transform="translate(559 262) rotate(188)">
-          <PineBranch length={110} seed={19} />
-        </g>
-        {/* galho central entre os presentes */}
-        <g transform="translate(200 262) rotate(-62)">
-          <PineBranch length={80} seed={23} />
-        </g>
-        <g transform="translate(350 262) rotate(-118)">
-          <PineBranch length={80} seed={29} />
-        </g>
+        {/* morros de neve ao fundo */}
+        <path
+          d="M0 62 C 40 52 90 60 130 66 C 160 52 215 50 250 60 C 266 60 276 56 282 56 L282 100 L0 100 Z"
+          fill="#e4eefb"
+          opacity={0.85}
+        />
+        <path
+          d="M110 78 C 130 62 175 62 200 72 L 200 100 L 110 100 Z"
+          fill="#fff"
+          opacity={0.9}
+        />
 
-        <Ornament x={22} y={176} r={11} />
-        <Ornament x={527} y={96} r={11} />
-        <Ornament x={252} y={236} r={9} />
-        <Bulb x={40} y={118} glow={12} />
-        <Bulb x={505} y={176} glow={12} />
+        {/* cerca à esquerda */}
+        <g transform="translate(0 15)">
+          <Fence />
+        </g>
+        {/* cerca à direita (aparece só um pedaço) */}
+        <g transform="translate(272 -12) scale(0.9)">
+          <Fence />
+        </g>
 
         {/* presentes */}
-        <Gift x={22} y={138} w={150} h={116} bowScale={1.05} />
-        <Gift x={402} y={150} w={130} h={104} bowScale={0.95} />
-        <Gift
-          x={232}
-          y={196}
-          w={96}
-          h={60}
-          body="xa-goldbox"
-          side="xa-goldbox"
-          ribbon="xa-red"
-          bowScale={0.6}
-        />
+        <KraftGift x={236} y={-8} w={56} h={64} bow={0.6} />
+        <KraftGift x={179} y={33} w={93} h={53} bow={1} />
 
-        {/* neve */}
+        {/* neve da frente */}
         <path
-          d="M0 262 C 60 248 130 262 200 256 C 270 250 330 266 400 258 C 460 252 510 262 549 254 L549 300 L0 300 Z"
-          fill="url(#xs-snow)"
+          d="M0 82 C 40 70 90 74 130 86 C 170 94 215 88 282 80 L282 100 L0 100 Z"
+          fill="url(#xa-snow)"
         />
         <path
-          d="M0 280 C 80 270 160 284 250 278 C 340 272 430 286 549 276 L549 300 L0 300 Z"
-          fill="#ffffff"
+          d="M0 92 C 60 84 120 96 180 94 C 220 92 250 88 282 90 L282 100 L0 100 Z"
+          fill="#fff"
         />
+        <Sparkle x={92} y={52} s={2.5} o={0.8} />
+        <Sparkle x={160} y={72} s={2} o={0.7} />
+        <Sparkle x={120} y={40} s={2} o={0.7} />
       </svg>
     </div>
   );
